@@ -69,7 +69,7 @@ $breadcrumb-hover-color: $secondary-color;
 $breadcrumb-hover-backgroundcolor: $primary-color;
 $breadcrumb-link-color: $link-color;
 $breadcrumb-spacing: 10px;
-$breadcrumb-half-height: $breadcrumb-height/2;
+$breadcrumb-half-height: calc($breadcrumb-height / 2);
 
 // Blog Navigation
 $blog-navigation-height: 24px;
@@ -78,7 +78,7 @@ $blog-navigation-backgroundcolor: $secondary-color;
 $blog-navigation-hover-color: $secondary-color;
 $blog-navigation-hover-backgroundcolor: $primary-color;
 $blog-navigation-spacing: 15px;
-$blog-navigation-half-height: $blog-navigation-height/2;
+$blog-navigation-half-height: calc($blog-navigation-height / 2);
 
 // Pagination
 $pagination-height: 24px;
