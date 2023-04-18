@@ -1,0 +1,6 @@
+- title: "github"
+  href: "https://github.com/freeipa/ansible-freeipa"
+  target: "_blank"
+- title: "galaxy"
+  href: "https://galaxy.ansible.com/freeipa/ansible_freeipa"
+  target: "_blank"

@@ -1,0 +1,112 @@
+- path: ''
+  title: Home
+- path: blog/
+  title: Blog
+- path: community.html
+  title: Community
+- path: contribute.html
+  title: Contribute
+- autosubitems: true
+  path: documentation/
+  subitems:
+  - path: development/
+    subitems:
+    - path: new_module.html
+      title: Writing a new ansible-freeipa module
+    title: Development
+  - path: plugins/
+    subitems:
+    - path: automember.html
+      title: automember
+    - path: automountkey.html
+      title: automountkey
+    - path: automountlocation.html
+      title: automountlocation
+    - path: automountmap.html
+      title: automountmap
+    - path: config.html
+      title: config
+    - path: delegation.html
+      title: delegation
+    - path: dnsconfig.html
+      title: dnsconfig
+    - path: dnsforwardzone.html
+      title: dnsforwardzone
+    - path: dnsrecord.html
+      title: dnsrecord
+    - path: dnszone.html
+      title: dnszone
+    - path: group.html
+      title: group
+    - path: hbacrule.html
+      title: hbacrule
+    - path: hbacsvc.html
+      title: hbacsvc
+    - path: hbacsvcgroup.html
+      title: hbacsvcgroup
+    - path: host.html
+      title: host
+    - path: hostgroup.html
+      title: hostgroup
+    - path: idrange.html
+      title: idrange
+    - path: location.html
+      title: location
+    - path: permission.html
+      title: permission
+    - path: privilege.html
+      title: privilege
+    - path: pwpolicy.html
+      title: pwpolicy
+    - path: role.html
+      title: role
+    - path: selfservice.html
+      title: selfservice
+    - path: server.html
+      title: server
+    - path: service.html
+      title: service
+    - path: servicedelegationrule.html
+      title: servicedelegationrule
+    - path: servicedelegationtarget.html
+      title: servicedelegationtarget
+    - path: sudocmd.html
+      title: sudocmd
+    - path: sudocmdgroup.html
+      title: sudocmdgroup
+    - path: sudorule.html
+      title: sudorule
+    - path: topology.html
+      title: topology
+    - path: trust.html
+      title: trust
+    - path: user.html
+      title: user
+    - path: vault.html
+      title: vault
+    title: Plugins
+  - path: roles/
+    subitems:
+    - path: backup.html
+      title: ipabackup
+    - path: client.html
+      title: ipaclient
+    - path: replica.html
+      title: ipareplica
+    - path: server.html
+      title: ipaserver
+    - path: smartcard_client.html
+      title: ipasmartcard_client
+    - path: smartcard_server.html
+      title: ipasmartcard_server
+    title: Roles
+  - path: requirements.html
+    title: Requirements
+  title: Documentation
+- path: download/
+  subitems:
+  - path: all.html
+    title: All Releases
+  title: Download
+- path: search.html
+  title: Search

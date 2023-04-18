@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+{%  include subnav.html -%}
+{%  include head.html -%}
+  <body>
+    <div class="wrap">
+{%  include header.html -%}
+{%  include navigation.html -%}
+    <div class="row spacer"></div>
+    <div class="row content">
+      <article class="page-content">
+        <section class="columns medium-9">
+          {{ content }}
+        </section>
+        <section class="columns medium-3 sticky">
+{%  include asides/search.html -%}
+{%  include asides/recent_posts.html -%}
+{%  include asides/quick_links.html -%}
+        </section>
+      </article>
+    </div>
+{%  include footer.html -%}
+    </div>
+  </body>
+</html>

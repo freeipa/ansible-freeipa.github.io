@@ -1,0 +1,8 @@
+{%  if include.path != null -%}
+{%    assign base_path = include.path -%}
+{%  else -%}
+{%    assign base_path = page.url -%}
+{%  endif -%}
+<ul>
+{% for _node in site.data.nav %}{% assign level = 1 %}{% include toc_inc.html level=level path="/" base_path=base_path node=_node %}{% endfor %}
+</ul>

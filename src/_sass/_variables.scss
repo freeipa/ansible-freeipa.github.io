@@ -1,0 +1,102 @@
+// Base Colors
+//$primary-color: #272727;
+$primary-color: #00689e;
+$secondary-color: #e0e0e0;
+$tertiary-color: #78bf40;
+$complimentary-color: #fff;
+$body-bg: #fdfdfd;
+$body-font-color: #222;
+
+// Links
+$link-color: #600000;
+$link-hover-color: $body-font-color;
+$link-visited-color: $link-color;
+
+// Text
+$base-font-family: Helvetica, Arial, sans-serif;
+$base-font-size: 1.0em;
+$small-font-size: $base-font-size * 0.875;
+$base-line-height: 1.5;
+
+// Primary Navbar Settings
+$navbar-height: 40px;
+$navbar-color: $primary-color;
+$navbar-backgroundcolor: $primary-color;
+$navbar-text-color: $secondary-color;
+$navbar-hover-text-color: $complimentary-color;
+$navbar-active-color: $primary-color;
+$navbar-active-backgroundcolor: $tertiary-color;
+$navbar-hover-color: $primary-color;
+$navbar-hover-backgroundcolor: $secondary-color;
+$navbar-hover-active-color: darken($tertiary-color, 10%);
+$navbar-hover-active-backgroundcolor: $secondary-color;
+$navbar-font-size: 13px;
+$navbar-font-family: Helvetica, Arial, sans-serif;
+$navbar-menu-width: 220px;
+
+// Socials Navbar Settings
+$socials-font-color: $secondary-color;
+$socials-font-size: 1.5em;
+
+// Utility
+$spacing-unit: 30px;
+
+// Banner
+//$banner-color: #78bf40;
+$banner-color: $body-font-color;
+$banner-backgroundcolor: darken($body-bg, 20%);
+    //#78bf40;
+
+// Footer
+$footer-height: 40px;
+$footer-text-color: $secondary-color;
+$footer-color: $primary-color;
+$footer-link-color: $complimentary-color;
+//$footer-backgroundcolor: #00182f;
+$footer-backgroundcolor: $primary-color;
+
+// Page Navigation
+$page-navigation-height: 18px;
+$page-navigation-text-color: lighten($primary-color, 50%);
+$page-navigation-link-color: lighten($primary-color, 80%);
+$page-navigation-color: $primary-color;
+
+// Breadcrumb Navigation
+$breadcrumb-height: 24px;
+$breadcrumb-color: $primary-color;
+$breadcrumb-backgroundcolor: $secondary-color;
+$breadcrumb-hover-color: $secondary-color;
+$breadcrumb-hover-backgroundcolor: $primary-color;
+$breadcrumb-link-color: $link-color;
+$breadcrumb-spacing: 10px;
+$breadcrumb-half-height: $breadcrumb-height/2;
+
+// Blog Navigation
+$blog-navigation-height: 24px;
+$blog-navigation-color: $primary-color;
+$blog-navigation-backgroundcolor: $secondary-color;
+$blog-navigation-hover-color: $secondary-color;
+$blog-navigation-hover-backgroundcolor: $primary-color;
+$blog-navigation-spacing: 15px;
+$blog-navigation-half-height: $blog-navigation-height/2;
+
+// Pagination
+$pagination-height: 24px;
+$pagination-color: $primary-color;
+$pagination-backgroundcolor: $secondary-color;
+$pagination-hover-color: $secondary-color;
+$pagination-hover-backgroundcolor: $primary-color;
+$pagination-active-color: $primary-color;
+$pagination-active-backgroundcolor: $tertiary-color;
+$pagination-hover-active-color: $secondary-color;
+$pagination-hover-active-backgroundcolor: darken($tertiary-color, 20%);
+$pagination-disabled-backgroundcolor:  $secondary-color;
+$pagination-disabled-color: #ffffff;
+$pagination-item-width: 40px;
+
+// form
+$form-border-color: #c0c0c0;
+$form-color: #fdfdfd;
+$form-border: 1px $form-border-color solid;
+$form-height: 24px;
+$form-focus-color: #feffe9;

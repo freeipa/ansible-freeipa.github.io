@@ -1,0 +1,80 @@
+/**
+ * Breadcrump Navigation
+ */
+
+.breadcrumb {
+    text-align: center;
+    list-style: none;
+    display: inline-table;
+    padding: 0;
+    margin: 0;
+    height: $breadcrumb-height;
+}
+.breadcrumb li {
+    display: inline;
+}
+.breadcrumb li a {
+    background: $breadcrumb-backgroundcolor;
+    color: $breadcrumb-color;
+    display: block;
+    float: left;
+    text-align: center;
+    font-weight: 700;
+    height: $breadcrumb-height;
+    line-height: $breadcrumb-height;
+    padding: 0 $breadcrumb-spacing 0 2*$breadcrumb-spacing;
+    position: relative;
+    margin: 0 $breadcrumb-spacing 0 0;
+    text-decoration: none;
+}
+.breadcrumb li a:after {
+    content: "";
+    border-top: $breadcrumb-half-height solid transparent;
+    border-bottom: $breadcrumb-half-height solid transparent;
+    border-left: $breadcrumb-half-height solid $breadcrumb-backgroundcolor;
+    position: absolute;
+    right: -$breadcrumb-half-height;
+    top: 0;
+    z-index: 1;
+}
+.breadcrumb li:first-child a {
+    padding: 0 $breadcrumb-spacing 0 $breadcrumb-spacing;
+}
+.breadcrumb li:first-child a:after {
+    right: -$breadcrumb-half-height+1;
+}
+.breadcrumb li a:before {
+    content: "";
+    border-top: $breadcrumb-half-height solid transparent;
+    border-bottom: $breadcrumb-half-height solid transparent;
+    border-left: $breadcrumb-half-height solid $body-bg;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.breadcrumb li:first-child a:before {
+    display: none;
+}
+.breadcrumb li a:hover {
+    background: $breadcrumb-hover-backgroundcolor;
+    color: $breadcrumb-hover-color;
+}
+.breadcrumb li a:hover:after {
+    border-left: $breadcrumb-half-height solid $breadcrumb-hover-backgroundcolor;
+}
+@media print {
+    .breadcrumb li a {
+	background: 0;
+	margin: 0;
+    }
+    .breadcrumb li:first-child a {
+	padding: 0;
+    }
+    .breadcrumb li a:after {
+	content: ">";
+	border: 0;
+    }
+    .breadcrumb li a:before {
+	border: 0;
+    }
+}

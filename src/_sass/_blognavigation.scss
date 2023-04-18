@@ -1,0 +1,77 @@
+/**
+ * Blog Navigation
+ */
+
+.blog-navigation {
+    display: block;
+    width: auto;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+.blog-navigation a:visited {
+    color: $blog-navigation-color;
+}
+.blog-navigation a {
+    color: $blog-navigation-color;
+    background-color: $blog-navigation-backgroundcolor;
+    display: block;
+    float: left;
+    font-weight: 700;
+    height: $blog-navigation-height;
+    line-height: $blog-navigation-height;
+    padding: 0 $blog-navigation-spacing 0 $blog-navigation-spacing;
+    position: relative;
+    text-decoration: none;
+}
+.blog-navigation a:hover {
+    background-color: $blog-navigation-hover-backgroundcolor;
+    color: $blog-navigation-hover-color;
+    text-decoration: none;
+}
+.blog-navigation>.prev {
+    text-align: left;
+    float: left;
+    left: $blog-navigation-half-height;
+}
+.blog-navigation>.prev:before {
+    content: "";
+    border-top: $blog-navigation-half-height solid transparent;
+    border-bottom: $blog-navigation-half-height solid transparent;
+    border-right: $blog-navigation-half-height solid $blog-navigation-backgroundcolor;
+    position: absolute;
+    left: -$blog-navigation-half-height;
+    top: 0;
+
+}
+.blog-navigation>.prev:hover:before {
+    border-right: $blog-navigation-half-height solid $blog-navigation-hover-backgroundcolor;
+}
+.blog-navigation>.next {
+    text-align: right;
+    float: right;
+    right: $blog-navigation-half-height;
+}
+.blog-navigation>.next:after {
+    content: "";
+    border-top: $blog-navigation-half-height solid transparent;
+    border-bottom: $blog-navigation-half-height solid transparent;
+    border-left: $blog-navigation-half-height solid $blog-navigation-backgroundcolor;
+    position: absolute;
+    right: -$blog-navigation-half-height;
+    top: 0;
+}
+.blog-navigation>.next:hover:after {
+    border-left: $blog-navigation-half-height solid $blog-navigation-hover-backgroundcolor;
+}
+
+@media print {
+    .blog-navigation>.prev:before {
+	content: "<";
+	border: 0;
+    }
+    .blog-navigation>.next:after {
+	content: ">";
+	border: 0;
+    }
+}

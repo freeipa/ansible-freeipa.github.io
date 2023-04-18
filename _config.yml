@@ -1,0 +1,41 @@
+# Site settings
+name: ansible-freeipa
+email: twoerner<AT>redhat.com
+author: Thomas Woerner
+lang: "en"
+
+keywords: Automation, linux, Ansible, roles, FreeIPA, IPA
+description: > # this means to ignore newlines until "baseurl:"
+  Welcome to the ansible-freeipa project homepage!
+
+baseurl:
+url: ansible-freeipa.github.io
+#production_url: http://ansible-freeipa.org
+
+# Exclude our ruby stuff
+exclude: [.bundle, bin, vendor, Gemfile, Gemfile.lock, Rakefile, s3_website.yml, .last_optimized, slim-pickins-jekyll-theme-master]
+
+
+# Build settings
+markdown: kramdown
+kramdown:
+  input: GFM
+
+destination: _site
+source: src
+
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-seo-tag
+
+feed:
+  path: atom.xml
+
+# Compress our Css
+sass:
+    style: :compressed
+
+permalink: /:year/:month/:title
+paginate: 3
+paginate_path: "/blog/page/:num/"

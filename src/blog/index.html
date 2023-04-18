@@ -1,0 +1,23 @@
+---
+layout: home
+title: Blog
+---
+
+<div>
+{% include paginator.html position="top" -%}
+
+<!-- This loops through the paginated posts -->
+{% for post in paginator.posts -%}
+  <div class="entry">
+    <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
+    <p class="post-meta">{{ post.date | date: "%b %-d, %Y" }}{% if post.author %} • {{ post.author }}{% endif %}{% if post.meta %} • {{ post.meta }}{% endif %}</p>
+    {{ post.content }}
+  </div>
+  {% if forloop.index != site.paginate and post.previous -%}
+    <hr class="thick">
+  {% endif -%}
+{% endfor -%}
+
+{% include paginator.html position="bottom" -%}
+</div>
+<div class="row blog-navigation"></div>
