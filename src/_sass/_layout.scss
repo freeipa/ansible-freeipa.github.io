@@ -26,8 +26,8 @@
 
 .wrap .banner {
     flex: 0 1 auto;
-    padding-top: ($spacing-unit/2);
-    padding-bottom: ($spacing-unit/2);
+    padding-top: calc($spacing-unit / 2);
+    padding-bottom: calc($spacing-unit / 2);
     padding-right: $spacing-unit*2;
     padding-left: $spacing-unit*2;
 }
@@ -40,8 +40,8 @@
 }
 .wrap .row.spacer {
     flex: 0 1 auto;
-    padding-top: ($spacing-unit/2);
-    padding-bottom: ($spacing-unit/2);
+    padding-top: calc($spacing-unit / 2);
+    padding-bottom: calc($spacing-unit / 2);
 }
 .wrap .row.content {
     flex: 1 1 auto;
@@ -50,13 +50,13 @@
 }
 .wrap .footer {
     flex: 0 1 $footer-height;
-    padding-top: ($spacing-unit/4);
-    padding-bottom: ($spacing-unit/4);
+    padding-top: calc($spacing-unit / 4);
+    padding-bottom: calc($spacing-unit / 4);
     padding-right: $spacing-unit*2;
     padding-left: $spacing-unit*2;
 }
 .wrap .blog-navigation {
-    padding-bottom: ($spacing-unit/4);
+    padding-bottom: calc($spacing-unit / 4);
 }
 
 .breadcrumb ul {
@@ -81,7 +81,7 @@
 }
 
 .navigation {
-    padding-top: ($spacing-unit/2);
+    padding-top: calc($spacing-unit / 2);
     padding-bottom: 0;
 }
 
@@ -180,7 +180,7 @@ input[type=submit]:hover {
 
 .search-excerpt {
     font-size: $small-font-size;
-    padding-top: ($spacing-unit/4);
+    padding-top: calc($spacing-unit / 4);
 }
 
 .recent-posts ul {
@@ -254,8 +254,8 @@ html,body {
     content: "";
     display: block;
     color: darken($complimentary-color, 35%);
-    margin-top: $spacing-unit/2;
-    margin-bottom: $spacing-unit/2;
+    margin-top: calc($spacing-unit / 2);
+    margin-bottom: calc($spacing-unit / 2);
     text-align: center;
 }
 

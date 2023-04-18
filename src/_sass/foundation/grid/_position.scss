@@ -11,7 +11,7 @@
 /// @param {Number} $position - Direction and amount to move. The column will move equal to the width of the column count specified. A positive number will push the column to the right, while a negative number will pull it to the left.
 @mixin grid-column-position($position) {
   @if type-of($position) == 'number' {
-    $offset: percentage($position / $grid-column-count);
+    $offset: percentage(calc($position / $grid-column-count));
 
     position: relative;
     #{$global-left}: $offset;
