@@ -1,0 +1,13 @@
+# gem lock file
+Gemfile.lock
+
+# generated data
+_site/
+.bundle/
+src/.jekyll-cache/
+vendor/
+
+# temporary files
+*~
+*.swp
+
