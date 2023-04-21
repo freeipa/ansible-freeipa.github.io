@@ -1,0 +1,19 @@
+<aside class="small-12 recent-posts">
+  <h2>Tags</h2>
+  <ul id="tag-list">
+    <!-- sort tags by name -->
+    {% capture site_tags %}
+        {% for tag in site.tags %}
+            {{ tag | first }}{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+    {% endcapture %}
+    {% assign list_of_tags = site_tags | split:',' | sort_natural %}
+
+    <!-- list tags -->
+    {% for tag in list_of_tags -%}
+    <li>
+      <a href="{{ site.baseurl }}/tags#{{ tag | strip }}">{{ tag | strip }}</a>
+    </li>
+    {% endfor -%}
+  </ul>
+</aside>

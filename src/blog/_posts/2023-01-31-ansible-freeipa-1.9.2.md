@@ -5,6 +5,8 @@ section: Blog
 date: 2023-01-31T03:35:00
 author: Thomas Woerner
 category: release
+tags:
+  - release
 ---
 
 Changes since 1.9.1
