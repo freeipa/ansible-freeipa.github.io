@@ -131,6 +131,7 @@ Example playbook to ensure an AD-trust idrange is present, with range type 'trus
 
 Example playbook to ensure an AD-trust idrange has auto creation of groups set to 'hybrid':
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA idrange.
@@ -145,6 +146,7 @@ Example playbook to ensure an AD-trust idrange has auto creation of groups set t
       name: ad_id_range
       auto_private_groups: "hybrid"
 ```
+{% endraw %}
 
 Example playbook to make sure an idrange is absent:
 
