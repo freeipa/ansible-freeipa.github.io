@@ -5,6 +5,8 @@ section: Blog
 date: 2022-01-21T16:39:00
 author: Thomas Woerner
 category: release
+tags:
+  - release
 ---
 
 Highlights in version 1.6.1

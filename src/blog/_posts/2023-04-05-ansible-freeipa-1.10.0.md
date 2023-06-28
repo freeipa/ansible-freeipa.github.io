@@ -5,6 +5,8 @@ section: Blog
 date: 2023-04-05T04:30:00
 author: Thomas Woerner
 category: release
+tags:
+  - release
 ---
 
 Highlights in 1.10.0

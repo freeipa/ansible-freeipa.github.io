@@ -156,3 +156,13 @@ pre {
         }
     }
 }
+
+ul#tag-list {
+  li {
+    ::before {
+       content: '#';
+    }
+    display: inline-block;
+    margin-right: 1ch;
+  }
+}

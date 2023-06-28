@@ -5,6 +5,8 @@ section: Blog
 date: 2023-01-30T03:54:00
 author: Thomas Woerner
 category: release
+tags:
+  - release
 ---
 
 Highlights in 1.9.1

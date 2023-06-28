@@ -5,6 +5,8 @@ section: Blog
 date: 2022-08-16T14:43:00
 author: Thomas Woerner
 category: release
+tags:
+  - release
 ---
 
 Highlight in version 1.8.3
