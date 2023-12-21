@@ -7,6 +7,9 @@ _site/
 src/.jekyll-cache/
 vendor/
 
+# Container data
+.vendor/
+
 # temporary files
 *~
 *.swp
