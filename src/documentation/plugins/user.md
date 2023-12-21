@@ -1,8 +1,7 @@
 ---
 layout: page
-title: user
+title: ipauser
 ---
-
 
 Description
 -----------
@@ -27,7 +26,7 @@ Requirements
 ------------
 
 **Controller**
-* Ansible version: 2.8+
+* Ansible version: 2.13+
 
 **Node**
 * Supported FreeIPA version (see above)
@@ -61,6 +60,7 @@ Example playbook to ensure a user is present:
       last: Acme
       uid: 10001
       gid: 100
+      gecos: "The Pinky"
       phone: "+555123457"
       email: pinky@acme.com
       passwordexpiration: "2023-01-19 23:59:59"
@@ -355,6 +355,33 @@ Example playbook to ensure users are absent:
       state: absent
 ```
 
+When using FreeIPA 4.8.0+, SMB logon script, profile, home directory and home drive can be set for users.
+
+In the example playbook to set SMB attributes note that `smb_profile_path` and `smb_home_dir` use paths in UNC format, which includes backslashes ('\\`). If the paths are quoted, the backslash needs to be escaped becoming "\\", so the path `\\server\dir` becomes `"\\\\server\\dir"`. If the paths are unquoted the slashes do not have to be escaped.
+
+The YAML specification states that a colon (':') is a key separator and a dash ('-') is an item marker, only  with a space after them, so using both unquoted as part of a path should not be a problem. If a space is needed after a colon or a dash, then a quoted string must be used as in `"user - home"`. For the `smb_home_drive` attribute is is recomended that a quoted string is used, to improve readability.
+
+Example playbook to set SMB attributes:
+
+```yaml
+---
+- name: Plabook to handle users
+  hosts: ipaserver
+  become: false
+
+  tasks:
+  - name: Ensure user 'smbuser' is present with smb attributes
+    ipauser:
+      ipaadmin_password: SomeADMINpassword
+      name: smbuser
+      first: SMB
+      last: User
+      smb_logon_script: N:\logonscripts\startup
+      smb_profile_path: \\server\profiles\some_profile
+      smb_home_dir: \\users\home\smbuser
+      smb_home_drive: "U:"
+```
+
 
 Variables
 =========
@@ -384,8 +411,8 @@ Variable | Description | Required
 
 Variable | Description | Required
 -------- | ----------- | --------
-`first` \| `givenname` | The first name string. | no
-`last` \| `sn` | The last name string. | no
+`first` \| `givenname` | The first name string. Required if user does not exist. | no
+`last` \| `sn` | The last name string. Required if user does not exist. | no
 `fullname` \| `cn` | The full name string. | no
 `displayname` | The display name string. | no
 `homedir` | The home directory string. | no
@@ -396,8 +423,10 @@ Variable | Description | Required
 `passwordexpiration` \| `krbpasswordexpiration` | The kerberos password expiration date. Possible formats: `YYYYMMddHHmmssZ`, `YYYY-MM-ddTHH:mm:ssZ`, `YYYY-MM-ddTHH:mmZ`, `YYYY-MM-ddZ`, `YYYY-MM-dd HH:mm:ssZ` or `YYYY-MM-dd HH:mmZ`. The trailing 'Z' can be skipped. Only usable with IPA versions 4.7 and up. | no
 `password` | The user password string. | no
 `random` | Generate a random user password | no
-`uid` \| `uidnumber` | The UID integer. | no
-`gid` \| `gidnumber` | The GID integer. | no
+`uid` \| `uidnumber` | User ID Number (system will assign one if not provided). | no
+`gid` \| `gidnumber` | Group ID Number. | no
+`gecos` | GECOS | no
+`street` | Street address | no
 `city` | City | no
 `userstate` \| `st` | State/Province | no
 `postalcode` \| `zip` | Postalcode/ZIP | no
@@ -410,7 +439,7 @@ Variable | Description | Required
 `manager` | List of manager user names. | no
 `carlicense` | List of car licenses. | no
 `sshpubkey` \| `ipasshpubkey` | List of SSH public keys. | no
-`userauthtype` | List of supported user authentication types. Choices: `password`, `radius`, `otp` and ``. Use empty string to reset userauthtype to the initial value. | no
+`userauthtype` \| `ipauserauthtype` | List of supported user authentication types. Choices: `password`, `radius`, `otp`, `pkinit`, `hardened`, `idp` and `""`. An additional check ensures that only types can be used that are supported by the IPA version. Use empty string to reset userauthtype to the initial value. | no
 `userclass` | User category. (semantics placed on this attribute are for local interpretation). | no
 `radius` | RADIUS proxy configuration  | no
 `radiususer` | RADIUS proxy username | no
@@ -418,6 +447,8 @@ Variable | Description | Required
 `employeenumber` | Employee Number | no
 `employeetype` | Employee Type | no
 `preferredlanguage` | Preferred Language | no
+`idp` \| `ipaidpconfiglink` | External IdP configuration | no
+`idp_user_id` \| `ipaidpsub` | A string that identifies the user at external IdP | no
 `certificate` | List of base-64 encoded user certificates. | no
 `certmapdata` | List of certificate mappings. Either `data` or `certificate` or `issuer` together with `subject` need to be specified. Only usable with IPA versions 4.5 and up. <br>Options: | no
 &nbsp; | `certificate` - Base-64 encoded user certificate, not usable with other certmapdata options. | no
@@ -425,6 +456,10 @@ Variable | Description | Required
 &nbsp; | `subject` - Subject of the certificate, only usable together with `issuer` option. | no
 &nbsp; | `data` - Certmap data, not usable with other certmapdata options. | no
 `noprivate` | Do not create user private group. (bool) | no
+`smb_logon_script` \| `ipantlogonscript` | SMB logon script path. Requires FreeIPA version 4.8.0+. | no 
+`smb_profile_path:` \| `ipantprofilepath` | SMB profile path, in UNC format. Requires FreeIPA version 4.8.0+. | no 
+`smb_home_dir` \| `ipanthomedirectory` | SMB Home Directory, in UNC format. Requires FreeIPA version 4.8.0+.  | no 
+`smb_home_drive` \| `ipanthomedirectorydrive` | SMB Home Directory Drive, a single upercase letter (A-Z) followed by a colon (:), for example "U:". Requires FreeIPA version 4.8.0+. | no 
 `nomembers` | Suppress processing of membership attributes. (bool) | no
 
 
@@ -437,11 +472,12 @@ There are only return values if one or more random passwords have been generated
 Variable | Description | Returned When
 -------- | ----------- | -------------
 `user` | User dict with random password. (dict) <br>Options: | If random is yes and user did not exist or update_password is yes
-&nbsp; | `randompassword` - The generated random password | If only one user is handled by the module
-&nbsp; | `name` - The user name of the user that got a new random password. (dict) <br> Options: <br> &nbsp; `randompassword` - The generated random password | If several users are handled by the module
+&nbsp; | `randompassword` - The generated random password | If only one user is handled by the module without using the `users` parameter.
+&nbsp; | `name` - The user name of the user that got a new random password. (dict) <br> Options: <br> &nbsp; `randompassword` - The generated random password | If several users are handled by the module with the `users` parameter.
 
 
 Authors
 =======
 
 Thomas Woerner
+Rafael Jeffman
