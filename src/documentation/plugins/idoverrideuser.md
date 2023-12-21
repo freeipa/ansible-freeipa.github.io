@@ -42,14 +42,17 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 
 Example playbook to make sure test user test_user is present in idview test_idview
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage idoverrideuser
@@ -63,10 +66,12 @@ Example playbook to make sure test user test_user is present in idview test_idvi
       idview: test_idview
       anchor: test_user
 ```
+{% endraw %}
 
 
 Example playbook to make sure test user test_user is present in idview test_idview with description
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage idoverrideuser
@@ -81,10 +86,12 @@ Example playbook to make sure test user test_user is present in idview test_idvi
       anchor: test_user
       description: "test_user description"
 ```
+{% endraw %}
 
 
 Example playbook to make sure test user test_user is present in idview test_idview without description
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage idoverrideuser
@@ -99,10 +106,12 @@ Example playbook to make sure test user test_user is present in idview test_idvi
       anchor: test_user
       description: ""
 ```
+{% endraw %}
 
 
 Example playbook to make sure test user test_user is present in idview test_idview with internal name test_123_user
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage idoverrideuser
@@ -117,10 +126,12 @@ Example playbook to make sure test user test_user is present in idview test_idvi
       anchor: test_user
       name: test_123_user
 ```
+{% endraw %}
 
 
 Example playbook to make sure test user test_user is present in idview test_idview without internal name
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage idoverrideuser
@@ -135,10 +146,12 @@ Example playbook to make sure test user test_user is present in idview test_idvi
       anchor: test_user
       name: ""
 ```
+{% endraw %}
 
 
 Example playbook to make sure test user test_user is present in idview test_idview with uid 20001
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage idoverrideuser
@@ -153,10 +166,12 @@ Example playbook to make sure test user test_user is present in idview test_idvi
       anchor: test_user
       uid: 20001
 ```
+{% endraw %}
 
 
 Example playbook to make sure test user test_user is present in idview test_idview without uid
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage idoverrideuser
@@ -171,10 +186,12 @@ Example playbook to make sure test user test_user is present in idview test_idvi
       anchor: test_user
       uid: ""
 ```
+{% endraw %}
 
 
 Example playbook to make sure test user test_user is present in idview test_idview with gecos "Gecos Test"
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage idoverrideuser
@@ -189,10 +206,12 @@ Example playbook to make sure test user test_user is present in idview test_idvi
       anchor: test_user
       gecos: Gecos Test
 ```
+{% endraw %}
 
 
 Example playbook to make sure test user test_user is present in idview test_idview without gecos
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage idoverrideuser
@@ -207,10 +226,12 @@ Example playbook to make sure test user test_user is present in idview test_idvi
       anchor: test_user
       gecos: ""
 ```
+{% endraw %}
 
 
 Example playbook to make sure test user test_user is present in idview test_idview with gidnumber
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage idoverrideuser
@@ -225,10 +246,12 @@ Example playbook to make sure test user test_user is present in idview test_idvi
       anchor: test_user
       gidnumber: 20001
 ```
+{% endraw %}
 
 
 Example playbook to make sure test user test_user is present in idview test_idview without gidnumber
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage idoverrideuser
@@ -243,10 +266,12 @@ Example playbook to make sure test user test_user is present in idview test_idvi
       anchor: test_user
       gidnumber: ""
 ```
+{% endraw %}
 
 
 Example playbook to make sure test user test_user is present in idview test_idview with homedir /Users
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage idoverrideuser
@@ -261,10 +286,12 @@ Example playbook to make sure test user test_user is present in idview test_idvi
       anchor: test_user
       homedir: /Users
 ```
+{% endraw %}
 
 
 Example playbook to make sure test user test_user is present in idview test_idview without homedir
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage idoverrideuser
@@ -279,10 +306,12 @@ Example playbook to make sure test user test_user is present in idview test_idvi
       anchor: test_user
       homedir: ""
 ```
+{% endraw %}
 
 
 Example playbook to make sure test user test_user is present in idview test_idview with shell
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage idoverrideuser
@@ -297,10 +326,12 @@ Example playbook to make sure test user test_user is present in idview test_idvi
       anchor: test_user
       shell: /bin/someshell
 ```
+{% endraw %}
 
 
 Example playbook to make sure test user test_user is present in idview test_idview without shell
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage idoverrideuser
@@ -315,10 +346,12 @@ Example playbook to make sure test user test_user is present in idview test_idvi
       anchor: test_user
       shell: ""
 ```
+{% endraw %}
 
 
 Example playbook to make sure test user test_user is present in idview test_idview with sshpubkey
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage idoverrideuser
@@ -334,10 +367,12 @@ Example playbook to make sure test user test_user is present in idview test_idvi
       sshpubkey:
       - ssh-rsa AAAAB3NzaC1yc2EAAADAQABAAABgQCqmVDpEX5gnSjKuv97Ay ...
 ```
+{% endraw %}
 
 
 Example playbook to make sure test user test_user is present in idview test_idview without sshpubkey
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage idoverrideuser
@@ -352,10 +387,12 @@ Example playbook to make sure test user test_user is present in idview test_idvi
       anchor: test_user
       sshpubkey: []
 ```
+{% endraw %}
 
 
 Example playbook to make sure test user test_user is present in idview test_idview with 1 certificate
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage idoverrideuser
@@ -371,10 +408,12 @@ Example playbook to make sure test user test_user is present in idview test_idvi
       certificate:
       - "{{ lookup('file', 'cert1.b64', rstrip=False) }}"
 ```
+{% endraw %}
 
 
 Example playbook to make sure test user test_user is present in idview test_idview with 3 certificate members
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage idoverrideuser
@@ -393,10 +432,12 @@ Example playbook to make sure test user test_user is present in idview test_idvi
       - "{{ lookup('file', 'cert3.b64', rstrip=False) }}"
       action: member
 ```
+{% endraw %}
 
 
 Example playbook to make sure test user test_user is present in idview test_idview without 2 certificate members
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage idoverrideuser
@@ -415,10 +456,12 @@ Example playbook to make sure test user test_user is present in idview test_idvi
       action: member
       state: absent
 ```
+{% endraw %}
 
 
 Example playbook to make sure test user test_user is present in idview test_idview without certificates
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage idoverrideuser
@@ -433,10 +476,12 @@ Example playbook to make sure test user test_user is present in idview test_idvi
       anchor: test_user
       certificate: []
 ```
+{% endraw %}
 
 
 Example playbook to make sure test user test_user is present in idview test_idview with enabling falling back to AD DC LDAP when resolving AD trusted objects. (For two-way trusts only.)
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage idoverrideuser
@@ -451,10 +496,12 @@ Example playbook to make sure test user test_user is present in idview test_idvi
       anchor: test_user
       fallback_to_ldap: true
 ```
+{% endraw %}
 
 
 Example playbook to make sure test user test_user is absent in idview test_idview
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage idoverrideuser
@@ -470,6 +517,7 @@ Example playbook to make sure test user test_user is absent in idview test_idvie
       continue: true
       state: absent
 ```
+{% endraw %}
 
 
 Variables

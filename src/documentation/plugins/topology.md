@@ -35,14 +35,17 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 
 Example playbook to add a topology segment with default name (cn):
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle topologysegment
@@ -58,11 +61,13 @@ Example playbook to add a topology segment with default name (cn):
       right: ipareplica2.test.local
       state: present
 ```
+{% endraw %}
 The name (cn) can also be set if it should not be the default `{left}-to-{right}`.
 
 
 Example playbook to delete a topology segment:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle topologysegment
@@ -78,11 +83,13 @@ Example playbook to delete a topology segment:
       right: ipareplica2.test.local
       state: absent
 ```
+{% endraw %}
 It is possible to either use the name (cn) or left and right nodes. If left and right nodes are used, then the name will be searched and used internally.
 
 
 Example playbook to reinitialize a topology segment:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle topologysegment
@@ -99,11 +106,13 @@ Example playbook to reinitialize a topology segment:
       direction: left-to-right
       state: reinitialized
 ```
+{% endraw %}
 It is possible to either use the name (cn) or left and right nodes. If left and right nodes are used, then the name will be searched and used internally.
 
 
 Example playbook to verify a topology suffix:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle topologysuffix
@@ -117,9 +126,11 @@ Example playbook to verify a topology suffix:
       suffix: domain
       state: verified
 ```
+{% endraw %}
 
 Example playbook to add or remove or check or reinitialize a list of topology segments:
 
+{% raw %}
 ```yaml
 ---
 - name: Add topology segments
@@ -149,6 +160,7 @@ Example playbook to add or remove or check or reinitialize a list of topology se
       #state: reinitialized
     loop: "{{ ipatopology_segments | default([]) }}"
 ```
+{% endraw %}
 
 
 Variables
