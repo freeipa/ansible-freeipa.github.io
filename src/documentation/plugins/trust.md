@@ -1,8 +1,7 @@
 ---
 layout: page
-title: trust
+title: ipatrust
 ---
-
 
 Description
 -----------
@@ -24,7 +23,7 @@ Requirements
 
 **Controller**
 
-* Ansible version: 2.8+
+* Ansible version: 2.13+
 
 **Node**
 

@@ -13,6 +13,7 @@ Features
 * Client deployment
 * One-time-password (OTP) support
 * Repair mode
+* DNS resolver configuration support
 
 
 Supported FreeIPA Versions
@@ -25,16 +26,17 @@ Supported Distributions
 -----------------------
 
 * RHEL/CentOS 7.4+
+* CentOS Stream 8+
 * Fedora 26+
 * Ubuntu
+* Debian
 
 
 Requirements
 ------------
 
 **Controller**
-* Ansible version: 2.8+
-* /usr/bin/kinit is required on the controller if a one time password (OTP) is used
+* Ansible version: 2.13+
 
 **Node**
 * Supported FreeIPA version (see above)
@@ -109,6 +111,40 @@ Example playbook to setup the IPA client(s) using principal and password from in
     state: present
 ```
 
+Example inventory file with configuration of dns resolvers:
+
+```ini
+[ipaclients]
+ipaclient1.example.com
+ipaclient2.example.com
+
+[ipaservers]
+ipaserver.example.com
+
+[ipaclients:vars]
+ipaadmin_principal=admin
+ipaadmin_password=MySecretPassword123
+ipaclient_domain=example.com
+ipaclient_configure_dns_resolver=yes
+ipaclient_dns_servers=192.168.100.1
+```
+
+Example inventory file with cleanup of dns resolvers:
+
+```ini
+[ipaclients]
+ipaclient1.example.com
+ipaclient2.example.com
+
+[ipaservers]
+ipaserver.example.com
+
+[ipaclients:vars]
+ipaadmin_principal=admin
+ipaadmin_password=MySecretPassword123
+ipaclient_domain=example.com
+ipaclient_cleanup_dns_resolver=yes
+```
 
 Playbooks
 =========
@@ -151,6 +187,7 @@ Variable | Description | Required
 `ipaclient_no_ssh` | The bool value defines if OpenSSH client will be configured. `ipaclient_no_ssh` defaults to `no`. | no
 `ipaclient_no_sshd` | The bool value defines if OpenSSH server will be configured. `ipaclient_no_sshd` defaults to `no`. | no
 `ipaclient_no_sudo` | The bool value defines if SSSD will be configured as a data source for sudo. `ipaclient_no_sudo` defaults to `no`. | no
+`ipaclient_subid` | The bool value defines if SSSD will be configured as a data source for subid. `ipaclient_subid` defaults to `no`. | no
 `ipaclient_no_dns_sshfp` | The bool value defines if DNS SSHFP records will not be created automatically. `ipaclient_no_dns_sshfp` defaults to `no`. | no
 `ipaclient_force` | The bool value defines if settings will be forced even in the error case. `ipaclient_force` defaults to `no`. | no
 `ipaclient_force_ntpd` | The bool value defines if ntpd usage will be forced. This is not supported anymore and leads to a warning. `ipaclient_force_ntpd` defaults to `no`. | no
@@ -174,7 +211,7 @@ Server Variables
 Variable | Description | Required
 -------- | ----------- | --------
 `ipaservers` | This group is a list of the IPA server full qualified host names. In a topology with a chain of servers and replicas, it is important to use the right server or replica as the server for the client. If there is a need to overwrite the setting for a client in the `ipaclients` group, please use the list `ipaclient_servers` explained below. If no `ipaservers` group is defined than the installation preparation step will try to use DNS autodiscovery to identify the the IPA server using DNS txt records. | mostly
-`ipaadmin_keytab` | The string variable enables the use of an admin keytab as an alternative authentication method. The variable needs to contain the local path to the keytab file. If `ipaadmin_keytab` is used, then `ipaadmin_password` does not need to be set. If `ipaadmin_keytab` is used with `ipaclient_use_otp: yes` then the keytab needs to be available on the controller, else on the client node. The use of full path names is recommended.  | no
+`ipaadmin_keytab` | The string variable enables the use of an admin keytab as an alternative authentication method. The variable needs to contain the local path to the keytab file. If `ipaadmin_keytab` is used, then `ipaadmin_password` does not need to be set. If `ipaadmin_keytab` is used with `ipaclient_use_otp: yes` then the keytab needs to be available on the controller, else on the client node. The use of full path names is recommended. | no
 `ipaadmin_principal` | The string variable only needs to be set if the name of the Kerberos admin principal is not "admin". If `ipaadmin_principal` is not set it will be set internally to "admin". | no
 `ipaadmin_password` | The string variable contains the Kerberos password of the Kerberos admin principal. If `ipaadmin_keytab` is used, then `ipaadmin_password` does not need to be set. | mostly
 
@@ -200,6 +237,9 @@ Variable | Description | Required
 `ipaclient_allow_repair` | The bool value defines if an already joined or partly set-up client can be repaired. `ipaclient_allow_repair` defaults to `no`. Contrary to `ipaclient_force_join=yes` the host entry will not be changed on the server. | no
 `ipaclient_install_packages` | The bool value defines if the needed packages are installed on the node. `ipaclient_install_packages` defaults to `yes`. | no
 `ipaclient_on_master` | The bool value is only used in the server and replica installation process to install the client part. It should not be set otherwise. `ipaclient_on_master` defaults to `no`. | no
+`ipaclient_configure_dns_resolver` | The bool value defines if the DNS resolver is configured. This is useful if the IPA server has internal DNS support. `ipaclient_dns_server` need to be set also. The installation of packages is happening before the DNS resolver is configured, therefore package installation needs to be possible without the configuration of the DNS resolver. The DNS nameservers are configured for `NetworkManager`, `systemd-resolved` (if installed and enabled) and `/etc/resolv.conf` if neither NetworkManager nor systemd-resolved is used. | no
+`ipaclient_dns_servers` | The list of DNS server IP addresses. This is only useful with `ipaclient_configure_dns_resolver`. | no
+`ipaclient_cleanup_dns_resolver` | The bool value defines if DNS resolvers that have been configured before with `ipaclient_configure_dns_resolver` will be cleaned up again. | no
 
 
 Authors

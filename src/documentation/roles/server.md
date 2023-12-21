@@ -26,15 +26,16 @@ Supported Distributions
 -----------------------
 
 * RHEL/CentOS 7.6+
+* CentOS Stream 8+
 * Fedora 26+
-* Ubuntu
+* Ubuntu 16.04 and 18.04
 
 
 Requirements
 ------------
 
 **Controller**
-* Ansible version: 2.8+
+* Ansible version: 2.13+
 
 **Node**
 * Supported FreeIPA version (see above)
@@ -81,7 +82,7 @@ Example playbook to setup the IPA server using admin and dirman passwords from a
     state: present
 ```
 
-Example playbook to unconfigure the IPA client(s) using principal and password from inventory file:
+Example playbook to unconfigure the IPA server using principal and password from inventory file:
 
 ```yaml
 ---
@@ -137,10 +138,10 @@ Server installation step 1: Generate CSR, copy to controller as `<ipaserver host
     state: present
 
   post_tasks:
-  - name: Copy CSR /root/ipa.csr from node to "{{ groups.ipaserver[0] }}-ipa.csr"
+  - name: Copy CSR /root/ipa.csr from node to "{{ groups.ipaserver[0] + '-ipa.csr' }}"
     fetch:
       src: /root/ipa.csr
-      dest: "{{ groups.ipaserver[0] }}-ipa.csr"
+      dest: "{{ groups.ipaserver[0] + '-ipa.csr' }}"
       flat: yes
 ```
 
@@ -157,9 +158,9 @@ Server installation step 2: Copy `<ipaserver hostname>-chain.crt` to the IPA ser
     ipaserver_external_cert_files: "/root/chain.crt"
 
   pre_tasks:
-  - name: Copy "{{ groups.ipaserver[0] }}-chain.crt" to /root/chain.crt on node
+  - name: Copy "{{ groups.ipaserver[0] + '-chain.crt' }}" to /root/chain.crt on node
     copy:
-      src: "{{ groups.ipaserver[0] }}-chain.crt"
+      src: "{{ groups.ipaserver[0] + '-chain.crt' }}"
       dest: "/root/chain.crt"
       force: yes
 
@@ -169,6 +170,64 @@ Server installation step 2: Copy `<ipaserver hostname>-chain.crt` to the IPA ser
 ```
 
 The files can also be copied automatically: Set `ipaserver_copy_csr_to_controller` to true in the server installation step 1 and set `ipaserver_external_cert_files_from_controller` to point to the `chain.crt` file in the server installation step 2.
+
+Since version 4.10, FreeIPA supports creating certificates using random serial numbers. Random serial numbers is a global and permanent setting, that can only be activated while deploying the first server of the domain. Replicas will inherit this setting automatically. An example of an inventory file to deploy a server with random serial numbers enabled is:
+
+```ini
+[ipaserver]
+ipaserver.example.com
+
+[ipaserver:vars]
+ipaserver_domain=example.com
+ipaserver_realm=EXAMPLE.COM
+ipaadmin_password=MySecretPassword123
+ipadm_password=MySecretPassword234
+ipaserver_random_serial_numbers=true
+```
+
+By setting the variable in the inventory file, the same ipaserver deployment playbook, shown before, can be used.
+
+
+Example inventory file to remove a server from the domain:
+
+```ini
+[ipaserver]
+ipaserver.example.com
+
+[ipaserver:vars]
+ipaadmin_password=MySecretPassword123
+ipaserver_remove_from_domain=true
+```
+
+Example playbook to remove an IPA server using admin passwords from the domain:
+
+```yaml
+---
+- name: Playbook to remove IPA server
+  hosts: ipaserver
+  become: true
+
+  roles:
+  - role: ipaserver
+    state: absent
+```
+
+The inventory will enable the removal of the server (also a replica) from the domain. Additional options are needed if the removal of the server/replica is resulting in a topology disconnect or if the server/replica is the last that has a role.
+
+To continue with the removal with a topology disconnect it is needed to set these parameters:
+
+```ini
+ipaserver_ignore_topology_disconnect=true
+ipaserver_remove_on_server=ipaserver2.example.com
+```
+
+To continue with the removal for a server that is the last that has a role:
+
+```ini
+ipaserver_ignore_last_of_role=true
+```
+
+Be careful with enabling the `ipaserver_ignore_topology_disconnect` and especially `ipaserver_ignore_last_of_role`, the change can not be reverted easily.
 
 
 Playbooks
@@ -223,6 +282,7 @@ Variable | Description | Required
 `ipaserver_no_ui_redirect` | Do not automatically redirect to the Web UI. (bool) | no
 `ipaserver_dirsrv_config_file` | The path to LDIF file that will be used to modify configuration of dse.ldif during installation. (string) | no
 `ipaserver_pki_config_override` | Path to ini file with config overrides. This is only usable with recent FreeIPA versions. (string) | no
+`ipaserver_random_serial_numbers` | Enable use of random serial numbers for certificates. Requires FreeIPA version 4.10 or later. (boolean) | no
 
 SSL certificate Variables
 -------------------------
@@ -254,6 +314,7 @@ Variable | Description | Required
 `ipaclient_no_ssh` | The bool value defines if OpenSSH client will be configured. `ipaclient_no_ssh` defaults to `no`. | no
 `ipaclient_no_sshd` | The bool value defines if OpenSSH server will be configured. `ipaclient_no_sshd` defaults to `no`. | no
 `ipaclient_no_sudo` | The bool value defines if SSSD will be configured as a data source for sudo. `ipaclient_no_sudo` defaults to `no`. | no
+`ipaclient_subid` | The bool value defines if SSSD will be configured as a data source for subid. `ipaclient_subid` defaults to `no`. | no
 `ipaclient_no_dns_sshfp` | The bool value defines if DNS SSHFP records will not be created automatically. `ipaclient_no_dns_sshfp` defaults to `no`. | no
 
 Certificate system Variables
@@ -305,6 +366,19 @@ Variable | Description | Required
 `ipaserver_firewalld_zone` | The value defines the firewall zone that will be used. This needs to be an existing runtime and permanent zone. (string) | no
 `ipaserver_external_cert_files_from_controller` | Files containing the IPA CA certificates and the external CA certificate chains on the controller that will be copied to the ipaserver host to `/root` folder. (list of string) | no
 `ipaserver_copy_csr_to_controller` | Copy the generated CSR from the ipaserver to the controller as `"{{ inventory_hostname }}-ipa.csr"`. (bool) | no
+
+Undeploy Variables (`state`: absent)
+------------------------------------
+
+These settings should only be used if the result is really wanted. The change might not be revertable easily.
+
+Variable | Description | Required
+-------- | ----------- | --------
+`ipaserver_ignore_topology_disconnect` | If enabled this enforces the removal of the server even if it results in a topology disconnect. Be careful with this setting. (bool) | false
+`ipaserver_ignore_last_of_role` | If enabled this enforces the removal of the server even if the server is the last with one that has a role. Be careful, this might not be revered easily. (bool) | false
+`ipaserver_remove_from_domain` | This enables the removal of the server from the domain additionally to the undeployment. (bool) | false
+`ipaserver_remove_on_server` | The value defines the server/replica in the domain that will to be used to remove the server/replica from the domain if `ipaserver_ignore_topology_disconnect` and `ipaserver_remove_from_domain` are enabled. Without the need to enable `ipaserver_ignore_topology_disconnect`, the value will be automatically detected using the replication agreements of the server/replica. (string) | false
+
 
 Authors
 =======

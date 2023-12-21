@@ -1,8 +1,7 @@
 ---
 layout: page
-title: config
+title: ipaconfig
 ---
-
 
 Description
 -----------
@@ -28,7 +27,7 @@ Requirements
 ------------
 
 **Controller**
-* Ansible version: 2.8+
+* Ansible version: 2.13+
 
 **Node**
 * Supported FreeIPA version (see above)
@@ -68,6 +67,9 @@ Example playbook to read config options:
         maxusername: 64
 ```
 
+
+Example playbook to set global configuration options:
+
 ```yaml
 ---
 - name: Playbook to ensure some config options are set
@@ -81,6 +83,40 @@ Example playbook to read config options:
         maxusername: 64
 ```
 
+
+Example playbook to enable SID and generate users and groups SIDs:
+
+```yaml
+---
+- name: Playbook to ensure SIDs are enabled and users and groups have SIDs
+  hosts: ipaserver
+  become: no
+  gather_facts: no
+
+  tasks:
+    - name: Enable SID and generate users and groups SIDS
+      ipaconfig:
+        ipaadmin_password: SomeADMINpassword
+        enable_sid: yes
+        add_sids: yes
+```
+
+Example playbook to change IPA domain NetBIOS name:
+
+```yaml
+---
+- name: Playbook to change IPA domain netbios name
+  hosts: ipaserver
+  become: no
+  gather_facts: no
+
+  tasks:
+    - name: Set IPA domain netbios name
+      ipaconfig:
+        ipaadmin_password: SomeADMINpassword
+        enable_sid: yes
+        netbios_name: IPADOM
+```
 
 Variables
 =========
@@ -111,9 +147,12 @@ Variable | Description | Required
 `selinuxusermaporder` \| `ipaselinuxusermaporder`| Set ordered list in increasing priority of SELinux users | no
 `selinuxusermapdefault`\| `ipaselinuxusermapdefault` |  Set default SELinux user when no match is found in SELinux map rule | no
 `pac_type` \| `ipakrbauthzdata` |  set default types of PAC supported for services (choices: `MS-PAC`, `PAD`, `nfs:NONE`). Use `""` to clear this variable. | no
-`user_auth_type` \| `ipauserauthtype` |  set default types of supported user authentication (choices: `password`, `radius`, `otp`, `disabled`). Use `""` to clear this variable. | no
+`user_auth_type` \| `ipauserauthtype` |  set default types of supported user authentication (choices: `password`, `radius`, `otp`, `pkinit`, `hardened`, `idp`, `disabled`, `""`). An additional check ensures that only types can be used that are supported by the IPA version. Use `""` to clear this variable. | no
 `domain_resolution_order` \| `ipadomainresolutionorder` | Set list of domains used for short name qualification | no
 `ca_renewal_master_server` \| `ipacarenewalmasterserver`| Renewal master for IPA certificate authority. | no
+`enable_sid` | New users and groups automatically get a SID assigned. Cannot be deactivated once activated. Requires IPA 4.9.8+. (bool) | no
+`netbios_name` | NetBIOS name of the IPA domain. Requires IPA 4.9.8+ and SID generation to be activated. | no
+`add_sids` | Add SIDs for existing users and groups. Requires IPA 4.9.8+ and SID generation to be activated. (bool) | no
 
 
 Return Values
@@ -143,6 +182,8 @@ Variable | Description | Returned When
 &nbsp; | `user_auth_type` | &nbsp;
 &nbsp; | `domain_resolution_order` | &nbsp;
 &nbsp; | `ca_renewal_master_server` | &nbsp;
+&nbsp; | `enable_sid` | &nbsp;
+&nbsp; | `netbios_name` | &nbsp;
 
 All returned fields take the same form as their namesake input parameters
 
