@@ -5,6 +5,8 @@ section: Blog
 date: 2022-07-28T14:38:00
 author: Thomas Woerner
 category: release
+tags:
+  - release
 ---
 
 Highlights in version 1.8.2

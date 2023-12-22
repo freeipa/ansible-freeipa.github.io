@@ -5,6 +5,8 @@ section: Blog
 date: 2021-12-15T09:02:00
 author: Thomas Woerner
 category: release
+tags:
+  - release
 ---
 
 Highlights in version 1.5.1

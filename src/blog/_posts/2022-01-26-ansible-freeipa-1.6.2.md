@@ -5,6 +5,8 @@ section: Blog
 date: 2022-01-26T15:22:00
 author: Thomas Woerner
 category: release
+tags:
+  - release
 ---
 
 Changes since 1.6.1
