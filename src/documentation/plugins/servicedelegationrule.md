@@ -37,14 +37,17 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 
 Example playbook to make sure servicedelegationrule delegation-rule is present:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA servicedelegationrule
@@ -57,10 +60,12 @@ Example playbook to make sure servicedelegationrule delegation-rule is present:
       ipaadmin_password: SomeADMINpassword
       name: delegation-rule
 ```
+{% endraw %}
 
 
 Example playbook to make sure servicedelegationrule delegation-rule member principal test/example.com is present:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA servicedelegationrule
@@ -75,10 +80,12 @@ Example playbook to make sure servicedelegationrule delegation-rule member princ
       principal: test/example.com
       action: member
 ```
+{% endraw %}
 
 
 Example playbook to make sure servicedelegationrule delegation-rule member principal test/example.com is absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA servicedelegationrule
@@ -95,10 +102,12 @@ Example playbook to make sure servicedelegationrule delegation-rule member princ
       state: absent
     state: absent
 ```
+{% endraw %}
 
 
 Example playbook to make sure servicedelegationrule delegation-rule member target delegation-target is present:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA servicedelegationrule
@@ -113,10 +122,12 @@ Example playbook to make sure servicedelegationrule delegation-rule member targe
       target: delegation-target
       action: member
 ```
+{% endraw %}
 
 
 Example playbook to make sure servicedelegationrule delegation-rule member target delegation-target is absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA servicedelegationrule
@@ -133,10 +144,12 @@ Example playbook to make sure servicedelegationrule delegation-rule member targe
       state: absent
     state: absent
 ```
+{% endraw %}
 
 
 Example playbook to make sure servicedelegationrule delegation-rule is absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA servicedelegationrule
@@ -150,6 +163,7 @@ Example playbook to make sure servicedelegationrule delegation-rule is absent:
       name: delegation-rule
       state: absent
 ```
+{% endraw %}
 
 
 Variables

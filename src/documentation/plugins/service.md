@@ -38,14 +38,17 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 
 Example playbook to make sure service is present:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA service.
@@ -82,10 +85,12 @@ Example playbook to make sure service is present:
       skip_host_check: true
       force: true
 ```
+{% endraw %}
 
 
 Example playbook to make sure service is absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA service.
@@ -100,10 +105,12 @@ Example playbook to make sure service is absent:
       name: HTTP/www.example.com
       state: absent
 ```
+{% endraw %}
 
 
 Example playbook to make sure service is disabled:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA service.
@@ -118,9 +125,11 @@ Example playbook to make sure service is disabled:
       name: HTTP/www.example.com
       state: disabled
 ```
+{% endraw %}
 
 Example playbook to add a service even if the host object does not exist, but only if it does have a DNS entry:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA service.
@@ -136,9 +145,11 @@ Example playbook to add a service even if the host object does not exist, but on
       skip_host_check: true
       force: false
 ```
+{% endraw %}
 
 Example playbook to add a service if it does have a DNS entry, but host object exits:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA service.
@@ -154,9 +165,11 @@ Example playbook to add a service if it does have a DNS entry, but host object e
       skip_host_check: false
       force: true
 ```
+{% endraw %}
 
 Example playbook to ensure service has a certificate:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA service.
@@ -188,9 +201,11 @@ Example playbook to ensure service has a certificate:
       action: member
       state: present
 ```
+{% endraw %}
 
 Example playbook to add a principal to the service:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA service.
@@ -206,9 +221,11 @@ Example playbook to add a principal to the service:
         principal: host/principal.example.com
         action: member
 ```
+{% endraw %}
 
 Example playbook to enable a host to manage service:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA service.
@@ -224,9 +241,11 @@ Example playbook to enable a host to manage service:
         host: host1.example.com
         action: member
 ```
+{% endraw %}
 
 Example playbook to allow users, groups, hosts or hostgroups to create a keytab of this service:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA service.
@@ -253,9 +272,11 @@ Example playbook to allow users, groups, hosts or hostgroups to create a keytab 
         - hostgroup02
         action: member
 ```
+{% endraw %}
 
 Example playbook to allow users, groups, hosts or hostgroups to retrieve a keytab of this service:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA service.
@@ -282,6 +303,7 @@ Example playbook to allow users, groups, hosts or hostgroups to retrieve a keyta
         - hostgroup02
         action: member
 ```
+{% endraw %}
 
 
 Variables

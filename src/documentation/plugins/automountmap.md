@@ -34,13 +34,16 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 Example playbook to ensure presence of an automount map:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to add an automount map
@@ -55,11 +58,13 @@ Example playbook to ensure presence of an automount map:
       location: DMZ
       desc: "this is a map for servers in the DMZ"
 ```
+{% endraw %}
 
 Automount maps can contain a submount key, which defines a mount location within the map the references another map. On FreeIPA, this is known as an indirect map. An indirect automount map is equivalent to adding a proper automount key to a map, referencyng another map (this second map is the indirect map). Use `parent` and `mount` parameters to create an indirect automount map with ansible-freeipa, without the need to directly manage the automount keys.
 
 Example playbook to ensure an indirect automount map is present:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to add an indirect automount map
@@ -70,9 +75,11 @@ Example playbook to ensure an indirect automount map is present:
     parent: auto.DMZ
     mount: dmz_indirect
 ```
+{% endraw %}
 
 Example playbook to ensure auto.DMZi is absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to remove an automount map
@@ -87,6 +94,7 @@ Example playbook to ensure auto.DMZi is absent:
       location: DMZ
       state: absent
 ```
+{% endraw %}
 
 
 Variables

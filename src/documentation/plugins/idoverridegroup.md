@@ -42,14 +42,17 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 
 Example playbook to make sure test group test_group is present in idview test_idview
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage idoverridegroup
@@ -63,10 +66,12 @@ Example playbook to make sure test group test_group is present in idview test_id
       idview: test_idview
       anchor: test_group
 ```
+{% endraw %}
 
 
 Example playbook to make sure test group test_group is present in idview test_idview with description
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage idoverridegroup
@@ -81,10 +86,12 @@ Example playbook to make sure test group test_group is present in idview test_id
       anchor: test_group
       description: "test_group description"
 ```
+{% endraw %}
 
 
 Example playbook to make sure test group test_group is present in idview test_idview without description
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage idoverridegroup
@@ -99,10 +106,12 @@ Example playbook to make sure test group test_group is present in idview test_id
       anchor: test_group
       description: ""
 ```
+{% endraw %}
 
 
 Example playbook to make sure test group test_group is present in idview test_idview with internal name test_123_group
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage idoverridegroup
@@ -117,10 +126,12 @@ Example playbook to make sure test group test_group is present in idview test_id
       anchor: test_group
       name: test_123_group
 ```
+{% endraw %}
 
 
 Example playbook to make sure test group test_group is present in idview test_idview without internal name
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage idoverridegroup
@@ -135,10 +146,12 @@ Example playbook to make sure test group test_group is present in idview test_id
       anchor: test_group
       name: ""
 ```
+{% endraw %}
 
 
 Example playbook to make sure test group test_group is present in idview test_idview with gid 20001
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage idoverridegroup
@@ -153,10 +166,12 @@ Example playbook to make sure test group test_group is present in idview test_id
       anchor: test_group
       gid: 20001
 ```
+{% endraw %}
 
 
 Example playbook to make sure test group test_group is present in idview test_idview without gid
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage idoverridegroup
@@ -171,10 +186,12 @@ Example playbook to make sure test group test_group is present in idview test_id
       anchor: test_group
       gid: ""
 ```
+{% endraw %}
 
 
 Example playbook to make sure test group test_group is present in idview test_idview with enabling falling back to AD DC LDAP when resolving AD trusted objects. (For two-way trusts only.)
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage idoverridegroup
@@ -189,10 +206,12 @@ Example playbook to make sure test group test_group is present in idview test_id
       anchor: test_group
       fallback_to_ldap: true
 ```
+{% endraw %}
 
 
 Example playbook to make sure test group test_group is absent in idview test_idview
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage idoverridegroup
@@ -208,6 +227,7 @@ Example playbook to make sure test group test_group is absent in idview test_idv
       continue: true
       state: absent
 ```
+{% endraw %}
 
 
 Variables

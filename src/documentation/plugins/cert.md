@@ -39,13 +39,16 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 Example playbook to request a new certificate for a service:
 
+{% raw %}
 ```yaml
 ---
 - name: Certificate request
@@ -66,9 +69,11 @@ Example playbook to request a new certificate for a service:
       principal: HTTP/www.example.com
     register: cert
 ```
+{% endraw %}
 
 Example playbook to revoke an existing certificate:
 
+{% raw %}
 ```yaml
 ---
 - name: Revoke certificate
@@ -82,9 +87,11 @@ Example playbook to revoke an existing certificate:
       reason: 5
       state: revoked
 ```
+{% endraw %}
 
 When revoking a certificate a mnemonic can also be used to set the revocation reason:
 
+{% raw %}
 ```yaml
 ---
 - name: Revoke certificate
@@ -98,9 +105,11 @@ When revoking a certificate a mnemonic can also be used to set the revocation re
       reason: cessationOfOperation
       state: revoked
 ```
+{% endraw %}
 
 Example to hold a certificate (alias for revoking a certificate with reason `certificateHold (6)`):
 
+{% raw %}
 ```yaml
 ---
 - name: Hold a certificate
@@ -113,9 +122,11 @@ Example to hold a certificate (alias for revoking a certificate with reason `cer
       serial_number: 0xAB1234
       state: held
 ```
+{% endraw %}
 
 Example playbook to release hold of certificate (may be used with any revoked certificates, despite of the rovoke reason):
 
+{% raw %}
 ```yaml
 ---
 - name: Release hold
@@ -128,9 +139,11 @@ Example playbook to release hold of certificate (may be used with any revoked ce
       serial_number: 0xAB1234
       state: released
 ```
+{% endraw %}
 
 Example playbook to retrieve a certificate and save it to a file in the target node:
 
+{% raw %}
 ```yaml
 ---
 - name: Retriev certificate
@@ -143,6 +156,7 @@ Example playbook to retrieve a certificate and save it to a file in the target n
       certificate_out: cert.pem
       state: retrieved
 ```
+{% endraw %}
 
 
 ipacert

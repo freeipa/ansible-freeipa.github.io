@@ -56,13 +56,16 @@ Usage
 
 Example inventory file with fixed domain and realm, setting up of the DNS server and using forwarders from /etc/resolv.conf:
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.example.com
 ```
+{% endraw %}
 
 Example playbook to create a backup on the IPA server locally:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to backup IPA server
@@ -73,10 +76,12 @@ Example playbook to create a backup on the IPA server locally:
   - role: ipabackup
     state: present
 ```
+{% endraw %}
 
 
 Example playbook to create a backup of the IPA server that is transferred to the controller using the server name as prefix for the backup and removed on the server:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to backup IPA server to controller
@@ -91,10 +96,12 @@ Example playbook to create a backup of the IPA server that is transferred to the
   - role: ipabackup
     state: present
 ```
+{% endraw %}
 
 
 Example playbook to create a backup of the IPA server that is transferred to the controller using the server name as prefix for the backup and kept on the server:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to backup IPA server to controller
@@ -109,10 +116,12 @@ Example playbook to create a backup of the IPA server that is transferred to the
   - role: ipabackup
     state: present
 ```
+{% endraw %}
 
 
 Copy backup `ipa-full-2020-10-01-10-00-00` from server to controller:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to copy backup from IPA server
@@ -127,10 +136,12 @@ Copy backup `ipa-full-2020-10-01-10-00-00` from server to controller:
   - role: ipabackup
     state: copied
 ```
+{% endraw %}
 
 
 Copy backups `ipa-full-2020-10-01-10-00-00` and `ipa-full-2020-10-02-10-00-00` from server to controller:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to copy backup from IPA server
@@ -147,10 +158,12 @@ Copy backups `ipa-full-2020-10-01-10-00-00` and `ipa-full-2020-10-02-10-00-00` f
   - role: ipabackup
     state: copied
 ```
+{% endraw %}
 
 
 Copy all backups from server to controller that are following the backup naming scheme:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to copy all backups from IPA server
@@ -165,10 +178,12 @@ Copy all backups from server to controller that are following the backup naming 
   - role: ipabackup
     state: copied
 ```
+{% endraw %}
 
 
 Remove backup `ipa-full-2020-10-01-10-00-00` from server:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to remove backup from IPA server
@@ -182,10 +197,12 @@ Remove backup `ipa-full-2020-10-01-10-00-00` from server:
   - role: ipabackup
     state: absent
 ```
+{% endraw %}
 
 
 Remove backups `ipa-full-2020-10-01-10-00-00` and `ipa-full-2020-10-02-10-00-00` from server:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to remove backup from IPA server
@@ -201,10 +218,12 @@ Remove backups `ipa-full-2020-10-01-10-00-00` and `ipa-full-2020-10-02-10-00-00`
   - role: ipabackup
     state: absent
 ```
+{% endraw %}
 
 
 Remove all backups from server that are following the backup naming scheme:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to remove all backups from IPA server
@@ -218,10 +237,12 @@ Remove all backups from server that are following the backup naming scheme:
   - role: ipabackup
     state: absent
 ```
+{% endraw %}
 
 
 Example playbook to restore an IPA server locally:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to restore an IPA server
@@ -236,10 +257,12 @@ Example playbook to restore an IPA server locally:
   - role: ipabackup
     state: restored
 ```
+{% endraw %}
 
 
 Example playbook to restore IPA server from controller:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to restore IPA server from controller
@@ -255,10 +278,12 @@ Example playbook to restore IPA server from controller:
   - role: ipabackup
     state: restored
 ```
+{% endraw %}
 
 
 Example playbook to copy a backup from controller to the IPA server:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to copy a backup from controller to the IPA server
@@ -273,6 +298,7 @@ Example playbook to copy a backup from controller to the IPA server:
   - role: ipabackup
     state: copied
 ```
+{% endraw %}
 
 
 Playbooks
@@ -280,6 +306,7 @@ Playbooks
 
 The example playbooks to do the backup, copy a backup and also to remove a backup, also to do the restore, copy a backup to the server are part of the repository in the playbooks folder.
 
+{% raw %}
 ```
 backup-server.yml
 backup-server-to-controller.yml
@@ -291,6 +318,7 @@ restore-server.yml
 restore-server-from-controller.yml
 copy-backup-from-controller.yml
 ```
+{% endraw %}
 
 Please remember to link or copy the playbooks to the base directory of ansible-freeipa if you want to use the roles within the source archive.
 

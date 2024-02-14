@@ -38,14 +38,17 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 
 Example playbook to make sure role is present with all members:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA role with members.
@@ -71,18 +74,22 @@ Example playbook to make sure role is present with all members:
       service:
       - service01
 ```
+{% endraw %}
 
 Example playbook to rename a role:
 
+{% raw %}
 ```yaml
 - iparole:
     ipaadmin_password: SomeADMINpassword
     name: somerole
     rename: anotherrole
 ```
+{% endraw %}
 
 Example playbook to make sure role is absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA role.
@@ -96,9 +103,11 @@ Example playbook to make sure role is absent:
       name: somerole
       state: absent
 ```
+{% endraw %}
 
 Example playbook to ensure a user is a member of a role:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA role member.
@@ -114,9 +123,11 @@ Example playbook to ensure a user is a member of a role:
       - pinky
       action: member
 ```
+{% endraw %}
 
 Example playbook to ensure a group is a member of a role:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA role member.
@@ -132,9 +143,11 @@ Example playbook to ensure a group is a member of a role:
       - host01.example.com
       action: member
 ```
+{% endraw %}
 
 Example playbook to ensure a host is a member of a role:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA role member.
@@ -150,9 +163,11 @@ Example playbook to ensure a host is a member of a role:
       - host01.example.com
       action: member
 ```
+{% endraw %}
 
 Example playbook to ensure a hostgroup is a member of a role:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA role member.
@@ -168,9 +183,11 @@ Example playbook to ensure a hostgroup is a member of a role:
       - hostgroup01
       action: member
 ```
+{% endraw %}
 
 Example playbook to ensure a service is a member of a role:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA role member.
@@ -186,9 +203,11 @@ Example playbook to ensure a service is a member of a role:
       - service01
       action: member
 ```
+{% endraw %}
 
 Example playbook to ensure a privilege is a member of a role:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA role member.
@@ -205,9 +224,11 @@ Example playbook to ensure a privilege is a member of a role:
       - User Administrators
       action: member
 ```
+{% endraw %}
 
 Example playbook to ensure that different members are not associated with a role.
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA role member.
@@ -235,6 +256,7 @@ Example playbook to ensure that different members are not associated with a role
       action: member
       state: absent
 ```
+{% endraw %}
 
 
 Variables

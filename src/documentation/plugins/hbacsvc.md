@@ -35,14 +35,17 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 
 Example playbook to make sure HBAC Service for http is present
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle HBAC Services
@@ -56,9 +59,11 @@ Example playbook to make sure HBAC Service for http is present
       name: http
       description: Web service
 ```
+{% endraw %}
 
 Example playbook to make sure HBAC Service for tftp is present
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle HBAC Services
@@ -72,9 +77,11 @@ Example playbook to make sure HBAC Service for tftp is present
       name: tftp
       description: TFTPWeb service
 ```
+{% endraw %}
 
 Example playbook to make sure HBAC Services for http and tftp are absent
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle HBAC Services
@@ -88,6 +95,7 @@ Example playbook to make sure HBAC Services for http and tftp are absent
       name: http,tftp
       state: absent
 ```
+{% endraw %}
 
 
 Variables

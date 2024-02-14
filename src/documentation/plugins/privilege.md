@@ -35,14 +35,17 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 
 Example playbook to make sure privilege "Broad Privilege" is present:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA privilege.
@@ -55,9 +58,11 @@ Example playbook to make sure privilege "Broad Privilege" is present:
       name: Broad Privilege
       description: Broad Privilege
 ```
+{% endraw %}
 
 Example playbook to make sure privilege "Broad Privilege" member permission has multiple values:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA privilege permission member.
@@ -74,11 +79,13 @@ Example playbook to make sure privilege "Broad Privilege" member permission has 
       - "System: Update DNS Entries"
       action: member
 ```
+{% endraw %}
 
 
 Example playbook to make sure privilege "Broad Privilege" member permission 'Write IPA Configuration' is absent:
 
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA privilege permission member.
@@ -94,9 +101,11 @@ Example playbook to make sure privilege "Broad Privilege" member permission 'Wri
       action: member
       state: absent
 ```
+{% endraw %}
 
 Example playbook to rename privilege "Broad Privilege" to "DNS Special Privilege":
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA privilege.
@@ -110,9 +119,11 @@ Example playbook to rename privilege "Broad Privilege" to "DNS Special Privilege
       rename: DNS Special Privilege
       state: renamed
 ```
+{% endraw %}
 
 Example playbook to make sure privilege "DNS Special Privilege" is absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA privilege.
@@ -123,6 +134,7 @@ Example playbook to make sure privilege "DNS Special Privilege" is absent:
       name: DNS Special Privilege
       state: absent
 ```
+{% endraw %}
 
 
 Variables

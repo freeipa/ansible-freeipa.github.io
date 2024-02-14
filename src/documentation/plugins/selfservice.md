@@ -36,14 +36,17 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 
 Example playbook to make sure selfservice "Users can manage their own name details" is present:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA selfservice.
@@ -59,10 +62,12 @@ Example playbook to make sure selfservice "Users can manage their own name detai
       - title
       - initials
 ```
+{% endraw %}
 
 
 Example playbook to make sure selfservice "Users can manage their own name details" is absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA selfservice.
@@ -75,10 +80,12 @@ Example playbook to make sure selfservice "Users can manage their own name detai
       name: "Users can manage their own name details"
       state: absent
 ```
+{% endraw %}
 
 
 Example playbook to make sure "Users can manage their own name details" member attribute initials is present:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA selfservice.
@@ -93,10 +100,12 @@ Example playbook to make sure "Users can manage their own name details" member a
       - initials
       action: member
 ```
+{% endraw %}
 
 
 Example playbook to make sure "Users can manage their own name details" member attribute initials is absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA selfservice.
@@ -112,10 +121,12 @@ Example playbook to make sure "Users can manage their own name details" member a
       action: member
       state: absent
 ```
+{% endraw %}
 
 
 Example playbook to make sure selfservice "Users can manage their own name details" is absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA selfservice.
@@ -128,6 +139,7 @@ Example playbook to make sure selfservice "Users can manage their own name detai
       name: "Users can manage their own name details"
       state: absent
 ```
+{% endraw %}
 
 
 Variables

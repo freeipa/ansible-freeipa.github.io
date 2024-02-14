@@ -37,14 +37,17 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 
 Example playbook to ensure host presence:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle hosts
@@ -67,11 +70,13 @@ Example playbook to ensure host presence:
       - "52:54:00:BD:97:1E"
       state: present
 ```
+{% endraw %}
 Compared to `ipa host-add` command no IP address conflict check is done as the ipahost module supports to have several IPv4 and IPv6 addresses for a host.
 
 
 Example playbook to ensure host presence with several IP addresses:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle hosts
@@ -98,10 +103,12 @@ Example playbook to ensure host presence with several IP addresses:
       - "52:54:00:BD:97:1E"
       state: present
 ```
+{% endraw %}
 
 
 Example playbook to ensure IP addresses are present for a host:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle hosts
@@ -119,10 +126,12 @@ Example playbook to ensure IP addresses are present for a host:
       action: member
       state: present
 ```
+{% endraw %}
 
 
 Example playbook to ensure IP addresses are absent for a host:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle hosts
@@ -140,10 +149,12 @@ Example playbook to ensure IP addresses are absent for a host:
       action: member
       state: absent
 ```
+{% endraw %}
 
 
 Example playbook to ensure host presence without DNS:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle hosts
@@ -158,10 +169,12 @@ Example playbook to ensure host presence without DNS:
       description: Example host
       force: yes
 ```
+{% endraw %}
 
 
 Example playbook to ensure host presence with a random password:
 
+{% raw %}
 ```yaml
 ---
 - name: Ensure host with random password
@@ -182,10 +195,12 @@ Example playbook to ensure host presence with a random password:
     debug:
       var: ipahost.host.randompassword
 ```
+{% endraw %}
 Please remember that a new random password will be generated for an existing but not enrolled host if `update_password` is not limited to `on_create`. For an already enrolled host the task will fail with `update_password` default setting `always`.
 
 Example playbook to ensure presence of several hosts with a random password:
 
+{% raw %}
 ```yaml
 ---
 - name: Ensure hosts with random password
@@ -215,11 +230,13 @@ Example playbook to ensure presence of several hosts with a random password:
     debug:
       var: ipahost.host["host02.example.com"].randompassword
 ```
+{% endraw %}
 Please remember that a new random password will be generated for an existing but not enrolled host if `update_password` is not limited to `on_create`. For an already enrolled host the task will fail with `update_password` default setting `always`.
 
 
 Example playbook to ensure presence of host member principal:
 
+{% raw %}
 ```yaml
 ---
 - name: Host present with principal
@@ -236,10 +253,12 @@ Example playbook to ensure presence of host member principal:
       - host/myhost01.example.com
       action: member
 ```
+{% endraw %}
 
 
 Example playbook to ensure presence of host member certificate:
 
+{% raw %}
 ```yaml
 - name: Host present with certificate
   hosts: ipaserver
@@ -254,10 +273,12 @@ Example playbook to ensure presence of host member certificate:
       - MIIC/zCCAeegAwIBAg...
       action: member
 ```
+{% endraw %}
 
 
 Example playbook to ensure presence of member managedby_host for serveral hosts:
 
+{% raw %}
 ```yaml
 ---
 - name: Host present with managedby_host
@@ -274,10 +295,12 @@ Example playbook to ensure presence of member managedby_host for serveral hosts:
         managedby_host: server.example.com
       action: member
 ```
+{% endraw %}
 
 
 Example playbook to disable a host:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle hosts
@@ -292,11 +315,13 @@ Example playbook to disable a host:
       update_dns: yes
       state: disabled
 ```
+{% endraw %}
 `update_dns` controls if the DNS entries will be updated in this case. For `state` present it is controlling the update of the DNS SSHFP records, but not the the other DNS records.
 
 
 Example playbook to ensure a host is absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle hosts
@@ -310,6 +335,7 @@ Example playbook to ensure a host is absent:
       name: host01.example.com
       state: absent
 ```
+{% endraw %}
 
 
 Variables

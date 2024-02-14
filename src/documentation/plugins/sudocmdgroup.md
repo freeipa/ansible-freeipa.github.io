@@ -37,14 +37,17 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 
 Example playbook to make sure sudocmdgroup is present:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle sudocmdgroups
@@ -58,9 +61,11 @@ Example playbook to make sure sudocmdgroup is present:
       name: group01
       description: Group of important commands
 ```
+{% endraw %}
 
 Example playbook to make sure that a sudo command and sudocmdgroups are present in existing sudocmdgroup:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle sudocmdgroups
@@ -77,10 +82,12 @@ Example playbook to make sure that a sudo command and sudocmdgroups are present 
       - /usr/bin/less
       action: member
 ```
+{% endraw %}
 `action` controls if the sudocmdgroup or member will be handled. To add or remove members, set `action` to `member`.
 
 Example playbook to make sure that a sudo command and sudocmdgroups are absent in sudocmdgroup:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle sudocmdgroups
@@ -98,9 +105,11 @@ Example playbook to make sure that a sudo command and sudocmdgroups are absent i
       action: member
       state: absent
 ```
+{% endraw %}
 
 Example playbook to make sure sudocmdgroup is absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle sudocmdgroups
@@ -114,6 +123,7 @@ Example playbook to make sure sudocmdgroup is absent:
       name: group01
       state: absent
 ```
+{% endraw %}
 
 Variables
 =========

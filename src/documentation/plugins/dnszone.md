@@ -36,13 +36,16 @@ Usage
 -----
 
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 Example playbook to create a simple DNS zone:
 
+{% raw %}
 ```yaml
 
 ---
@@ -58,9 +61,11 @@ Example playbook to create a simple DNS zone:
       state: present
 
 ```
+{% endraw %}
 
 
 Example playbook to create a DNS zone with all currently supported variables:
+{% raw %}
 ```yaml
 
 ---
@@ -99,10 +104,12 @@ Example playbook to create a DNS zone with all currently supported variables:
       skip_nameserver_check: true
       state: present
 ```
+{% endraw %}
 
 
 Example playbook to disable a zone:
 
+{% raw %}
 ```yaml
 
 ---
@@ -117,9 +124,11 @@ Example playbook to disable a zone:
       name: testzone.local
       state: disabled
 ```
+{% endraw %}
 
 
 Example playbook to enable a zone:
+{% raw %}
 ```yaml
 
 ---
@@ -133,6 +142,25 @@ Example playbook to enable a zone:
       ipaadmin_password: SomeADMINpassword
       name: testzone.local
       state: enabled
+```
+{% endraw %}
+
+Example playbook to allow per-zone privilege delegation:
+
+{% raw %}
+```yaml
+---
+- name: Playbook to enable per-zone privilege delegation
+  hosts: ipaserver
+  become: true
+
+  tasks:
+  - name: Enable privilege delegation.
+    ipadnszone:
+      ipaadmin_password: SomeADMINpassword
+      name: testzone.local
+      permission: true
+{% endraw %}
 ```
 
 
@@ -152,9 +180,11 @@ Example playbook to remove a zone:
       state: absent
 
 ```
+{% endraw %}
 
 Example playbook to create a zone for reverse DNS lookup, from an IP address:
 
+{% raw %}
 ```yaml
 
 ---
@@ -169,11 +199,13 @@ Example playbook to create a zone for reverse DNS lookup, from an IP address:
       name_from_ip: 192.168.1.2
       state: present
 ```
+{% endraw %}
 
 Note that, on the previous example the zone created with `name_from_ip` might be "1.168.192.in-addr.arpa.", "168.192.in-addr.arpa.", or "192.in-addr.arpa.", depending on the DNS response the system get while querying for zones, and for this reason, when creating a zone using `name_from_ip`, the inferred zone name is returned to the controller, in the attribute `dnszone.name`. Since the zone inferred might not be what a user expects, `name_from_ip` can only be used with `state: present`. To have more control over the zone name, the prefix length for the IP address can be provided.
 
 Example playbook to create a zone for reverse DNS lookup, from an IP address, given the prefix length and displaying the resulting zone name:
 
+{% raw %}
 ```yaml
 
 ---
@@ -192,6 +224,7 @@ Example playbook to create a zone for reverse DNS lookup, from an IP address, gi
     debug:
       msg: "Zone name: {{ result.dnszone.name }}"
 ```
+{% endraw %}
 
 
 Variables
@@ -225,6 +258,7 @@ Variable | Description | Required
 `ttl`| Time to live for records at zone apex | no
 `default_ttl`| Time to live for records without explicit TTL definition | no
 `nsec3param_rec`| NSEC3PARAM record for zone in format: hash_algorithm flags iterations salt | no
+`permission` \| `managedby` | Set per-zone access delegation permission. | no
 `skip_overlap_check`| Force DNS zone creation even if it will overlap with an existing zone | no
 `skip_nameserver_check` | Force DNS zone creation even if nameserver is not resolvable | no
 
@@ -240,4 +274,6 @@ Variable | Description | Returned When
 Authors
 =======
 
-Sergio Oliveira Campos
+- Sergio Oliveira Campos
+- Thomas Woerner
+- Rafael Jeffman

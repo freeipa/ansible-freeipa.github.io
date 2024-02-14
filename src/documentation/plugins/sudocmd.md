@@ -37,14 +37,17 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 
 Example playbook to make sure sudocmd exists:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle sudocmd
@@ -58,9 +61,11 @@ Example playbook to make sure sudocmd exists:
       name: /usr/bin/su
       state: present
 ```
+{% endraw %}
 
 Example playbook to make sure sudocmd is absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle sudocmd
@@ -74,6 +79,7 @@ Example playbook to make sure sudocmd is absent:
       name: /usr/bin/su
       state: absent
 ```
+{% endraw %}
 
 Variables
 =========

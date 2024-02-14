@@ -48,6 +48,7 @@ Usage
 
 Example inventory file with fixed principal using auto-discovery with DNS records:
 
+{% raw %}
 ```ini
 [ipaclients]
 ipaclient1.example.com
@@ -56,9 +57,11 @@ ipaclient2.example.com
 [ipaclients:vars]
 ipaadmin_principal=admin
 ```
+{% endraw %}
 
 Example playbook to setup the IPA client(s) using principal from inventory file and password from an [Ansible Vault](http://docs.ansible.com/ansible/latest/playbooks_vault.html) file:
 
+{% raw %}
 ```yaml
 - name: Playbook to configure IPA clients with username/password
   hosts: ipaclients
@@ -70,9 +73,11 @@ Example playbook to setup the IPA client(s) using principal from inventory file 
   - role: ipaclient
     state: present
 ```
+{% endraw %}
 
 Example playbook to unconfigure the IPA client(s) using principal and password from inventory file:
 
+{% raw %}
 ```yaml
 - name: Playbook to unconfigure IPA clients
   hosts: ipaclients
@@ -82,9 +87,11 @@ Example playbook to unconfigure the IPA client(s) using principal and password f
   - role: ipaclient
     state: absent
 ```
+{% endraw %}
 
 Example inventory file with fixed servers, principal, password and domain:
 
+{% raw %}
 ```ini
 [ipaclients]
 ipaclient1.example.com
@@ -98,9 +105,11 @@ ipaclient_domain=example.com
 ipaadmin_principal=admin
 ipaadmin_password=MySecretPassword123
 ```
+{% endraw %}
 
 Example playbook to setup the IPA client(s) using principal and password from inventory file:
 
+{% raw %}
 ```yaml
 - name: Playbook to configure IPA clients with username/password
   hosts: ipaclients
@@ -110,9 +119,11 @@ Example playbook to setup the IPA client(s) using principal and password from in
   - role: ipaclient
     state: present
 ```
+{% endraw %}
 
 Example inventory file with configuration of dns resolvers:
 
+{% raw %}
 ```ini
 [ipaclients]
 ipaclient1.example.com
@@ -128,9 +139,11 @@ ipaclient_domain=example.com
 ipaclient_configure_dns_resolver=yes
 ipaclient_dns_servers=192.168.100.1
 ```
+{% endraw %}
 
 Example inventory file with cleanup of dns resolvers:
 
+{% raw %}
 ```ini
 [ipaclients]
 ipaclient1.example.com
@@ -145,24 +158,29 @@ ipaadmin_password=MySecretPassword123
 ipaclient_domain=example.com
 ipaclient_cleanup_dns_resolver=yes
 ```
+{% endraw %}
 
 Playbooks
 =========
 
 The playbooks needed to deploy or undeploy a client are part of the repository in the playbooks folder. There are also playbooks to deploy and undeploy clusters.
+{% raw %}
 ```
 install-client.yml
 uninstall-client.yml
 ```
+{% endraw %}
 Please remember to link or copy the playbooks to the base directory of ansible-freeipa if you want to use the roles within the source archive.
 
 
 How to setup a client
 ---------------------
 
+{% raw %}
 ```bash
 ansible-playbook -v -i inventory/hosts install-client.yml
 ```
+{% endraw %}
 This will deploy the clients defined in the inventory file.
 
 
@@ -203,6 +221,7 @@ Variable | Description | Required
 `ipasssd_preserve_sssd` | The bool value defines if the old SSSD configuration will be preserved if it is not possible to merge it with a new one. `ipasssd_preserve_sssd` defaults to `no`. | no
 `ipaclient_request_cert` | The bool value defines if the certificate for the machine wil be requested. The certificate will be stored in /etc/ipa/nssdb under the nickname "Local IPA host". . `ipaclient_request_cert` defaults to `no`. The option is deprecated and will be removed in a future release. | no
 `ipaclient_keytab` | The string value contains the path on the node of a backup host keytab from a previous enrollment. | no
+`ipaclient_automount_location` | Automount location | no
 
 
 Server Variables

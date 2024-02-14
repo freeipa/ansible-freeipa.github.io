@@ -35,13 +35,16 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 Example playbook to make sure group automember rule is present with no conditions.
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to ensure a group automember rule is present with no conditions
@@ -55,9 +58,11 @@ Example playbook to make sure group automember rule is present with no condition
         description: "my automember rule"
         automember_type: group
 ```
+{% endraw %}
 
 Example playbook to make sure group automember rule is present with conditions:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to add a group automember rule with two conditions
@@ -77,9 +82,11 @@ Example playbook to make sure group automember rule is present with conditions:
         - key: uid
           expression: "1234"
 ```
+{% endraw %}
 
 Example playbook to delete a group automember rule:
 
+{% raw %}
 ```yaml
 - name: Playbook to delete a group automember rule
   hosts: ipaserver
@@ -93,9 +100,11 @@ Example playbook to delete a group automember rule:
         automember_type: group
         state: absent
 ```
+{% endraw %}
 
 Example playbook to add an inclusive condition to an existing rule
 
+{% raw %}
 ```yaml
 - name: Playbook to add an inclusive condition to an existing rule
   hosts: ipaserver
@@ -112,9 +121,11 @@ Example playbook to add an inclusive condition to an existing rule
           - key: fqdn
             expression: ".*.mydomain.com"
 ```
+{% endraw %}
 
 Example playbook to ensure group membership for all users has been rebuilt
 
+{% raw %}
 ```yaml
 - name: Playbook to ensure group membership for all users has been rebuilt
   hosts: ipaserver
@@ -126,10 +137,12 @@ Example playbook to ensure group membership for all users has been rebuilt
         automember_type: group
         state: rebuilt
 ```
+{% endraw %}
 
 Example playbook to ensure group membership for given users has been rebuilt
 
 
+{% raw %}
 ```yaml
 - name: Playbook to ensure group membership for given users has been rebuilt
   hosts: ipaserver
@@ -143,9 +156,11 @@ Example playbook to ensure group membership for given users has been rebuilt
         - user2
         state: rebuilt
 ```
+{% endraw %}
 
 Example playbook to ensure hostgroup membership for all hosts has been rebuilt
 
+{% raw %}
 ```yaml
 - name: Playbook to ensure hostgroup membership for all hosts has been rebuilt
   hosts: ipaserver
@@ -157,9 +172,11 @@ Example playbook to ensure hostgroup membership for all hosts has been rebuilt
         automember_type: hostgroup
         state: rebuilt
 ```
+{% endraw %}
 
 Example playbook to ensure hostgroup membership for given hosts has been rebuilt
 
+{% raw %}
 ```yaml
 - name: Playbook to ensure hostgroup membership for given hosts has been rebuilt
   hosts: ipaserver
@@ -173,9 +190,11 @@ Example playbook to ensure hostgroup membership for given hosts has been rebuilt
         - host2.mydomain.com
         state: rebuilt
 ```
+{% endraw %}
 
 Example playbook to ensure default group fallback_group for all unmatched group entries is set
 
+{% raw %}
 ```yaml
 - name: Playbook to ensure default group fallback_group for all unmatched group entries is set
   hosts: ipaserver
@@ -187,9 +206,11 @@ Example playbook to ensure default group fallback_group for all unmatched group 
         automember_type: group
         default_group: fallback_group
 ```
+{% endraw %}
 
 Example playbook to ensure default group for all unmatched group entries is not set
 
+{% raw %}
 ```yaml
 - name: Playbook to ensure default group for all unmatched group entries is not set
   hosts: ipaserver
@@ -202,9 +223,11 @@ Example playbook to ensure default group for all unmatched group entries is not 
         automember_type: group
         state: absent
 ```
+{% endraw %}
 
 Example playbook to ensure default hostgroup fallback_hostgroup for all unmatched group entries
 
+{% raw %}
 ```yaml
 - name: Playbook to ensure default hostgroup fallback_hostgroup for all unmatched group entries
   hosts: ipaserver
@@ -216,9 +239,11 @@ Example playbook to ensure default hostgroup fallback_hostgroup for all unmatche
         automember_type: hostgroup
         default_group: fallback_hostgroup
 ```
+{% endraw %}
 
 Example playbook to ensure default hostgroup for all unmatched group entries is not set
 
+{% raw %}
 ```yaml
 - name: Playbook to ensure default hostgroup for all unmatched group entries is not set
   hosts: ipaserver
@@ -231,9 +256,11 @@ Example playbook to ensure default hostgroup for all unmatched group entries is 
         default_group: ""
         state: absent
 ```
+{% endraw %}
 
 Example playbook to ensure all orphan automember group rules are removed:
 
+{% raw %}
 ```yaml
 - name: Playbook to ensure all orphan automember group rules are removed
   hosts: ipaserver
@@ -245,9 +272,11 @@ Example playbook to ensure all orphan automember group rules are removed:
         automember_type: group
         state: orphans_removed
 ```
+{% endraw %}
 
 Example playbook to ensure all orphan automember hostgroup rules are removed:
 
+{% raw %}
 ```yaml
 - name: Playbook to ensure all orphan automember hostgroup rules are removed
   hosts: ipaserver
@@ -259,6 +288,7 @@ Example playbook to ensure all orphan automember hostgroup rules are removed:
         automember_type: hostgroup
         state: orphans_removed
 ```
+{% endraw %}
 
 
 Variables

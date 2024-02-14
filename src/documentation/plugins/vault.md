@@ -38,13 +38,16 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 Example playbook to make sure vault is present (by default, vault type is `symmetric`):
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle vaults
@@ -58,9 +61,11 @@ Example playbook to make sure vault is present (by default, vault type is `symme
       password: SomeVAULTpassword
       description: A standard private vault.
 ```
+{% endraw %}
 
 Example playbook to make sure that a vault and its members are present:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle vaults
@@ -74,11 +79,13 @@ Example playbook to make sure that a vault and its members are present:
       username: admin
       users: user01
 ```
+{% endraw %}
 
 `action` controls if the vault, data, member or owner will be handled. To add or remove members or vault data, set `action` to `member`.
 
 Example playbook to make sure that a vault member is present in vault:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle vaults
@@ -93,9 +100,11 @@ Example playbook to make sure that a vault member is present in vault:
       users: user01
       action: member
 ```
+{% endraw %}
 
 Example playbook to make sure that a vault owner is absent in vault:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle vaults
@@ -111,9 +120,11 @@ Example playbook to make sure that a vault owner is absent in vault:
       action: member
       state: absent
 ```
+{% endraw %}
 
 Example playbook to make sure vault data is present in a symmetric vault:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle vaults
@@ -131,9 +142,11 @@ Example playbook to make sure vault data is present in a symmetric vault:
         More data archived.
       action: member
 ```
+{% endraw %}
 
 When retrieving data from a vault, it is recommended that `no_log: yes` is used, so that sensitive data stored in a vault is not logged by Ansible. The data is returned in a dict `vault`, in the field `data` (e.g. `result.vault.data`). An example playbook to retrieve data from a symmetric vault:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle vaults
@@ -155,9 +168,11 @@ When retrieving data from a vault, it is recommended that `no_log: yes` is used,
     debug:
       var: ipavault.vault.data
 ```
+{% endraw %}
 
 Example playbook to make sure vault data is absent in a symmetric vault:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle vaults
@@ -173,9 +188,11 @@ Example playbook to make sure vault data is absent in a symmetric vault:
       action: member
       state: absent
 ```
+{% endraw %}
 
 Example playbook to change the password of a symmetric:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle vaults
@@ -189,9 +206,11 @@ Example playbook to change the password of a symmetric:
       old_password: SomeVAULTpassword
       new_password: SomeNEWpassword
 ```
+{% endraw %}
 
 Example playbook to make sure vault is absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle vaults
@@ -208,6 +227,7 @@ Example playbook to make sure vault is absent:
   - debug:
       msg: "{{ result.vault.data }}"
 ```
+{% endraw %}
 
 Variables
 =========

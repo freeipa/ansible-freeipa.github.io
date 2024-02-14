@@ -36,14 +36,17 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 
 Example playbook to make sure delegation "basic manager attributes" is present:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA delegation.
@@ -61,10 +64,12 @@ Example playbook to make sure delegation "basic manager attributes" is present:
       group: managers
       membergroup: employees
 ```
+{% endraw %}
 
 
 Example playbook to make sure delegation "basic manager attributes" is absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA delegation.
@@ -77,10 +82,12 @@ Example playbook to make sure delegation "basic manager attributes" is absent:
       name: "basic manager attributes"
       state: absent
 ```
+{% endraw %}
 
 
 Example playbook to make sure "basic manager attributes" member attributes employeetype and employeenumber are present:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA delegation.
@@ -96,10 +103,12 @@ Example playbook to make sure "basic manager attributes" member attributes emplo
       - employeetype
       action: member
 ```
+{% endraw %}
 
 
 Example playbook to make sure "basic manager attributes" member attributes employeetype and employeenumber are absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA delegation.
@@ -116,10 +125,12 @@ Example playbook to make sure "basic manager attributes" member attributes emplo
       action: member
       state: absent
 ```
+{% endraw %}
 
 
 Example playbook to make sure delegation "basic manager attributes" is absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA delegation.
@@ -132,6 +143,7 @@ Example playbook to make sure delegation "basic manager attributes" is absent:
       name: "basic manager attributes"
       state: absent
 ```
+{% endraw %}
 
 
 Variables

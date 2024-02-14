@@ -36,14 +36,17 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 Example playbook to ensure a one-way trust is present:
 Omitting the two_way option implies the default of one-way
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to ensure a one-way trust is present
@@ -58,9 +61,11 @@ Omitting the two_way option implies the default of one-way
       password: secret_password
       state: present
 ```
+{% endraw %}
 
 Example playbook to ensure a two-way trust is present using a shared-secret:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to ensure a two-way trust is present
@@ -75,9 +80,11 @@ Example playbook to ensure a two-way trust is present using a shared-secret:
       two_way: True
       state: present
 ```
+{% endraw %}
 
 Example playbook to ensure a trust is absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to ensure a trust is absent
@@ -90,6 +97,7 @@ Example playbook to ensure a trust is absent:
       realm: ad.example.test
       state: absent
 ```
+{% endraw %}
 
 This will only delete the ipa-side of the trust and it does NOT delete the id-range that matches the trust,
 
