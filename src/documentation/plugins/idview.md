@@ -42,14 +42,17 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 
 Example playbook to make sure idview "test_idview" is present:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA idview.
@@ -61,10 +64,12 @@ Example playbook to make sure idview "test_idview" is present:
       ipaadmin_password: SomeADMINpassword
       name: test_idview
 ```
+{% endraw %}
 
 
 Example playbook to make sure idview "test_idview" member host "testhost.example.com" is present:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA idview host member.
@@ -78,10 +83,12 @@ Example playbook to make sure idview "test_idview" member host "testhost.example
       host: testhost.example.com
       action: member
 ```
+{% endraw %}
 
 
 Example playbook to make sure idview "test_idview" member host "testhost.example.com" is absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA idview host member.
@@ -96,10 +103,12 @@ Example playbook to make sure idview "test_idview" member host "testhost.example
       action: member
       state: absent
 ```
+{% endraw %}
 
 
 Example playbook to make sure idview "test_idview" is present with domain_resolution_order for "ad.example.com:ipa.example.com":
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA idview host member.
@@ -112,10 +121,12 @@ Example playbook to make sure idview "test_idview" is present with domain_resolu
       name: test_idview
       domain_resolution_order: "ad.example.com:ipa.example.com"
 ```
+{% endraw %}
 
 
 Example playbook to make sure idview "test_idview" is absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA idview.
@@ -128,6 +139,7 @@ Example playbook to make sure idview "test_idview" is absent:
       name: test_idview
       state: absent
 ```
+{% endraw %}
 
 
 Variables

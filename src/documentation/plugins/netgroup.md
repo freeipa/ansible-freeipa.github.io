@@ -35,14 +35,17 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 
 Example playbook to make sure netgroup "my_netgroup1" is present:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA netgroup.
@@ -56,10 +59,12 @@ Example playbook to make sure netgroup "my_netgroup1" is present:
       name: my_netgroup1
       description: My netgroup 1
 ```
+{% endraw %}
 
 
 Example playbook to make sure netgroup "my_netgroup1" is absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA netgroup.
@@ -73,10 +78,12 @@ Example playbook to make sure netgroup "my_netgroup1" is absent:
       name: my_netgroup1
       state: absent
 ```
+{% endraw %}
 
 
 Example playbook to make sure netgroup is present with user "user1"
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA netgroup.
@@ -91,10 +98,12 @@ Example playbook to make sure netgroup is present with user "user1"
       user: user1
       action: member
 ```
+{% endraw %}
 
 
 Example playbook to make sure netgroup user, "user1", is absent
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA netgroup.
@@ -110,10 +119,12 @@ Example playbook to make sure netgroup user, "user1", is absent
       action: member
       state: absent
 ```
+{% endraw %}
 
 
 Example playbook to make sure netgroup is present with members
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA netgroup.
@@ -132,10 +143,12 @@ Example playbook to make sure netgroup is present with members
       netgroup: admins
       action: member
 ```
+{% endraw %}
 
 
 Example playbook to make sure 2 netgroups TestNetgroup1, admins are absent
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA netgroup.
@@ -151,6 +164,7 @@ Example playbook to make sure 2 netgroups TestNetgroup1, admins are absent
       - admins
       state: absent
 ```
+{% endraw %}
 
 
 Variables

@@ -35,14 +35,17 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 
 Example playbook to make sure keycloak idp my-keycloak-idp is present:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA idp.
@@ -59,10 +62,12 @@ Example playbook to make sure keycloak idp my-keycloak-idp is present:
       base_url: keycloak.idm.example.com:8443/auth
       client_id: my-client-id
 ```
+{% endraw %}
 
 
 Example playbook to make sure keycloak idp my-keycloak-idp is absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA idp.
@@ -77,10 +82,12 @@ Example playbook to make sure keycloak idp my-keycloak-idp is absent:
       delete_continue: true
       state: absent
 ```
+{% endraw %}
 
 
 Example playbook to make sure github idp my-github-idp is present:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA idp.
@@ -95,10 +102,12 @@ Example playbook to make sure github idp my-github-idp is present:
       provider: github
       client_id: my-github-client-id
 ```
+{% endraw %}
 
 
 Example playbook to make sure google idp my-google-idp is present using provider defaults without specifying provider:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA idp.
@@ -119,10 +128,12 @@ Example playbook to make sure google idp my-google-idp is present using provider
       scope: "openid email"
       idp_user_id: email
 ```
+{% endraw %}
 
 
 Example playbook to make sure google idp my-google-idp is present using provider:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA idp.
@@ -137,10 +148,12 @@ Example playbook to make sure google idp my-google-idp is present using provider
       provider: google
       client_id: my-google-client-id
 ```
+{% endraw %}
 
 
 Example playbook to make sure idps my-keycloak-idp, my-github-idp and my-google-idp are absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA idp.
@@ -158,6 +171,7 @@ Example playbook to make sure idps my-keycloak-idp, my-github-idp and my-google-
       delete_continue: true
       state: absent
 ```
+{% endraw %}
 
 
 Variables

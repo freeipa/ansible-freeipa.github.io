@@ -50,13 +50,16 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 Example playbook to ensure a local domain idrange is present:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA idrange.
@@ -71,9 +74,11 @@ Example playbook to ensure a local domain idrange is present:
       base_id: 150000
       range_size: 200000
 ```
+{% endraw %}
 
 Example playbook to ensure a local domain idrange is present, with RID and secondary RID base values:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA idrange.
@@ -90,9 +95,11 @@ Example playbook to ensure a local domain idrange is present, with RID and secon
       rid_base: 1000000
       secondary_rid_base: 200000000
 ```
+{% endraw %}
 
 Example playbook to ensure an AD-trust idrange is present, with range type 'trust-ad' and using domain SID:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA idrange.
@@ -109,9 +116,11 @@ Example playbook to ensure an AD-trust idrange is present, with range type 'trus
       idrange_type: ipa-ad-trust
       dom_sid: S-1-5-21-2870384104-3340008087-3140804251
 ```
+{% endraw %}
 
 Example playbook to ensure an AD-trust idrange is present, with range type 'trust-ad-posix' and using domain SID:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA idrange.
@@ -127,9 +136,11 @@ Example playbook to ensure an AD-trust idrange is present, with range type 'trus
       idrange_type: ipa-ad-trust-posix
       dom_name: ad.ipa.test
 ```
+{% endraw %}
 
 Example playbook to ensure an AD-trust idrange has auto creation of groups set to 'hybrid':
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA idrange.
@@ -144,9 +155,11 @@ Example playbook to ensure an AD-trust idrange has auto creation of groups set t
       name: ad_id_range
       auto_private_groups: "hybrid"
 ```
+{% endraw %}
 
 Example playbook to make sure an idrange is absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA idrange.
@@ -160,6 +173,7 @@ Example playbook to make sure an idrange is absent:
       name: ad_id_range
       state: absent
 ```
+{% endraw %}
 
 
 Variables

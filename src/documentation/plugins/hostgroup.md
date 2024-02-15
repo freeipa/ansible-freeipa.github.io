@@ -39,14 +39,17 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 
 Example playbook to make sure hostgroup databases exists:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle hostgroups
@@ -64,9 +67,11 @@ Example playbook to make sure hostgroup databases exists:
       - mysql-server
       - oracle-server
 ```
+{% endraw %}
 
 Example playbook to make sure that hosts and hostgroups are present in existing databases hostgroup:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle hostgroups
@@ -85,10 +90,12 @@ Example playbook to make sure that hosts and hostgroups are present in existing 
       - oracle-server
       action: member
 ```
+{% endraw %}
 `action` controls if a the hostgroup or member will be handled. To add or remove members, set `action` to `member`.
 
 Example playbook to make sure hosts and hostgroups are absent in databases hostgroup:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle hostgroups
@@ -108,9 +115,11 @@ Example playbook to make sure hosts and hostgroups are absent in databases hostg
       action: member
       state: absent
 ```
+{% endraw %}
 
 Example playbook to rename an existing playbook:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle hostgroups
@@ -125,9 +134,11 @@ Example playbook to rename an existing playbook:
       rename: datalake
       state: renamed
 ```
+{% endraw %}
 
 Example playbook to make sure host-group databases is absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle hostgroups
@@ -141,6 +152,7 @@ Example playbook to make sure host-group databases is absent:
       name: databases
       state: absent
 ```
+{% endraw %}
 
 Variables
 =========

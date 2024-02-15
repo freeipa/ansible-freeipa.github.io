@@ -35,14 +35,17 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 
 Example playbook to make sure Sudo Rule is present:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle sudorules
@@ -55,10 +58,12 @@ Example playbook to make sure Sudo Rule is present:
       ipaadmin_password: SomeADMINpassword
       name: testrule1
 ```
+{% endraw %}
 
 
 Example playbook to make sure sudocmds are present in Sudo Rule:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle sudorules
@@ -74,10 +79,12 @@ Example playbook to make sure sudocmds are present in Sudo Rule:
       - /sbin/ifconfig
       action: member
 ```
+{% endraw %}
 
 
 Example playbook to make sure sudocmds are not present in Sudo Rule:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle sudorules
@@ -94,9 +101,33 @@ Example playbook to make sure sudocmds are not present in Sudo Rule:
       action: member
       state: absent
 ```
+{% endraw %}
+
+
+Example playbook to ensure a Group of RunAs User is present in sudo rule:
+
+{% raw %}
+```yaml
+---
+- name: Playbook to manage sudorule member
+  hosts: ipaserver
+  become: no
+  gather_facts: no
+
+  tasks:
+  - name: Ensure sudorule 'runasuser' has 'ipasuers' group as runas users.
+    ipasudorule:
+      ipaadmin_password: SomeADMINpassword
+      name: testrule1
+      runasuser_group: ipausers
+      action: member
+```
+{% endraw %}
+
 
 Example playbook to make sure Sudo Rule is absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle sudorules
@@ -110,6 +141,7 @@ Example playbook to make sure Sudo Rule is absent:
       name: testrule1
       state: absent
 ```
+{% endraw %}
 
 
 Variables

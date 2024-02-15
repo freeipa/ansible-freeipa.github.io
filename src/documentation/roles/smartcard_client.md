@@ -53,6 +53,7 @@ Usage
 
 Example inventory file with IPA clients:
 
+{% raw %}
 ```ini
 [ipaclients]
 ipaclient1.example.com
@@ -62,9 +63,11 @@ ipaclient2.example.com
 ipaadmin_password=SomeADMINpassword
 ipasmartcard_client_ca_certs=/etc/ipa/ca.crt
 ```
+{% endraw %}
 
 Example playbook to setup smartcard for the IPA clients using admin password and ipasmartcard_client_ca_certs from inventory file:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to setup smartcard for IPA clients
@@ -75,15 +78,18 @@ Example playbook to setup smartcard for the IPA clients using admin password and
   - role: ipasmartcard_client
     state: present
 ```
+{% endraw %}
 
 Playbooks
 =========
 
 The playbooks needed to setup smartcard for the IPA clients is part of the repository in the playbooks folder.
 
+{% raw %}
 ```
 install-smartcard-clients.yml
 ```
+{% endraw %}
 
 Please remember to link or copy the playbooks to the base directory of ansible-freeipa if you want to use the roles within the source archive.
 
@@ -91,9 +97,11 @@ Please remember to link or copy the playbooks to the base directory of ansible-f
 How to setup smartcard for clients
 ----------------------------------
 
+{% raw %}
 ```bash
 ansible-playbook -v -i inventory/hosts install-smartcard-clients.yml
 ```
+{% endraw %}
 This will setup the clients for smartcard use.
 
 

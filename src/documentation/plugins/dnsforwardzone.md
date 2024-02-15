@@ -34,14 +34,17 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 
 Example playbook to ensure presence of a forwardzone to ipa DNS:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle add a forwarder
@@ -98,6 +101,7 @@ Example playbook to ensure presence of a forwardzone to ipa DNS:
       name: example.com
       state: absent
 ```
+{% endraw %}
 
 Variables
 =========

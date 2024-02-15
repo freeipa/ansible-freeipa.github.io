@@ -38,14 +38,17 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 
 Example playbook to read config options:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle global config options
@@ -66,10 +69,12 @@ Example playbook to read config options:
         defaultshell: /bin/bash
         maxusername: 64
 ```
+{% endraw %}
 
 
 Example playbook to set global configuration options:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to ensure some config options are set
@@ -82,10 +87,12 @@ Example playbook to set global configuration options:
         defaultlogin: /bin/bash
         maxusername: 64
 ```
+{% endraw %}
 
 
 Example playbook to enable SID and generate users and groups SIDs:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to ensure SIDs are enabled and users and groups have SIDs
@@ -100,9 +107,11 @@ Example playbook to enable SID and generate users and groups SIDs:
         enable_sid: yes
         add_sids: yes
 ```
+{% endraw %}
 
 Example playbook to change IPA domain NetBIOS name:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to change IPA domain netbios name
@@ -117,6 +126,7 @@ Example playbook to change IPA domain NetBIOS name:
         enable_sid: yes
         netbios_name: IPADOM
 ```
+{% endraw %}
 
 Variables
 =========

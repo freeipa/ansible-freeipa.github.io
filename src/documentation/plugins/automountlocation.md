@@ -34,14 +34,17 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 
 Example playbook to ensure presence of an automount location:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to add an automount location
@@ -56,9 +59,11 @@ Example playbook to ensure presence of an automount location:
       state: present
 
 ```
+{% endraw %}
 
 Example playbook to ensure presence of multiple automount locations:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to add an automount location
@@ -76,10 +81,12 @@ Example playbook to ensure presence of multiple automount locations:
         - test
       state: present
 ```
+{% endraw %}
 
 
 Example playbook to ensure absence of an automount location:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to ensure an automount location is absent
@@ -95,6 +102,7 @@ Example playbook to ensure absence of an automount location:
         - LOCATION2
       state: absent
 ```
+{% endraw %}
 
 Variables
 =========

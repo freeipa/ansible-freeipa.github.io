@@ -55,6 +55,7 @@ Usage
 
 Example inventory file with ipa server and replicas:
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.example.com
@@ -71,9 +72,11 @@ ipareplicas
 ipaadmin_password=SomeADMINpassword
 ipasmartcard_server_ca_certs=/etc/ipa/ca.crt
 ```
+{% endraw %}
 
 Example playbook to setup smartcard for the IPA server using admin password and ipasmartcard_server_ca_certs from inventory file:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to setup smartcard for IPA server
@@ -84,9 +87,11 @@ Example playbook to setup smartcard for the IPA server using admin password and 
   - role: ipasmartcard_server
     state: present
 ```
+{% endraw %}
 
 Example playbook to setup smartcard for the IPA servers in ipareplicas group using admin password and ipasmartcard_server_ca_certs from inventory file:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to setup smartcard for IPA replicas
@@ -97,9 +102,11 @@ Example playbook to setup smartcard for the IPA servers in ipareplicas group usi
   - role: ipasmartcard_server
     state: present
 ```
+{% endraw %}
 
 Example playbook to setup smartcard for the IPA servers in ipaserver and ipareplicas group using admin password and ipasmartcard_server_ca_certs from inventory file:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to setup smartcard for IPA server and replicas
@@ -110,6 +117,7 @@ Example playbook to setup smartcard for the IPA servers in ipaserver and iparepl
   - role: ipasmartcard_server
     state: present
 ```
+{% endraw %}
 
 
 Playbooks
@@ -117,11 +125,13 @@ Playbooks
 
 The playbooks needed to setup smartcard for the IPA server and the replicas are part of the repository in the playbooks folder.
 
+{% raw %}
 ```
 install-smartcard-server.yml
 install-smartcard-servers.yml
 install-smartcard-replicas.yml
 ```
+{% endraw %}
 
 Please remember to link or copy the playbooks to the base directory of ansible-freeipa if you want to use the roles within the source archive.
 
@@ -129,27 +139,33 @@ Please remember to link or copy the playbooks to the base directory of ansible-f
 How to setup smartcard for server
 ---------------------------------
 
+{% raw %}
 ```bash
 ansible-playbook -v -i inventory/hosts install-smartcard-server.yml
 ```
+{% endraw %}
 This will setup the server for smartcard use.
 
 
 How to setup smartcard for replicas
 -----------------------------------
 
+{% raw %}
 ```bash
 ansible-playbook -v -i inventory/hosts install-smartcard-replicas.yml
 ```
+{% endraw %}
 This will setup the replicas for smartcard use.
 
 
 How to setup smartcard for server and replicas
 ----------------------------------------------
 
+{% raw %}
 ```bash
 ansible-playbook -v -i inventory/hosts install-smartcard-servers.yml
 ```
+{% endraw %}
 This will setup the replicas for smartcard use.
 
 

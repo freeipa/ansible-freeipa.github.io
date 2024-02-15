@@ -37,14 +37,17 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 
 Example playbook to ensure a user is present:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle users
@@ -74,11 +77,13 @@ Example playbook to ensure a user is present:
       first: brain
       last: Acme
 ```
+{% endraw %}
 `update_password` controls if a password for a user will be set in present state only on creation or every time (always).
 
 
 These two `ipauser` module calls can be combined into one with the `users` variable:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle users
@@ -104,9 +109,11 @@ These two `ipauser` module calls can be combined into one with the `users` varia
         last: Acme
       update_password: on_create
 ```
+{% endraw %}
 
 You can also alternatively use a json file containing the users, here `users_present.json`:
 
+{% raw %}
 ```json
 {
   "users": [
@@ -124,9 +131,11 @@ You can also alternatively use a json file containing the users, here `users_pre
   ]
 }
 ```
+{% endraw %}
 
 And ensure the presence of the users with this example playbook:
 
+{% raw %}
 ```yaml
 ---
 - name: Tests
@@ -144,9 +153,11 @@ And ensure the presence of the users with this example playbook:
       ipaadmin_password: SomeADMINpassword
       users: "{{ users }}"
 ```
+{% endraw %}
 
 Ensure user pinky is present with a generated random password and print the random password:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle users
@@ -167,9 +178,11 @@ Ensure user pinky is present with a generated random password and print the rand
     debug:
       var: ipauser.user.randompassword
 ```
+{% endraw %}
 
 Ensure users pinky and brain are present with a generated random password and print the random passwords:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle users
@@ -203,9 +216,11 @@ Ensure users pinky and brain are present with a generated random password and pr
     debug:
       var: ipauser.user.brain.randompassword
 ```
+{% endraw %}
 
 Example playbook to delete a user, but preserve it:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle users
@@ -220,11 +235,13 @@ Example playbook to delete a user, but preserve it:
       preserve: yes
       state: absent
 ```
+{% endraw %}
 
 This can also be done with the `users` variable containing only names, this can be combined into one module call:
 
 Example playbook to delete a user, but preserve it using the `users` variable:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle users
@@ -240,12 +257,14 @@ Example playbook to delete a user, but preserve it using the `users` variable:
       preserve: yes
       state: absent
 ```
+{% endraw %}
 
 This can also be done as an alternative with the `users` variable containing only names.
 
 
 Example playbook to undelete a preserved user.
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle users
@@ -259,12 +278,14 @@ Example playbook to undelete a preserved user.
       name: pinky
       state: undeleted
 ```
+{% endraw %}
 
 This can also be done as an alternative with the `users` variable containing only names.
 
 
 Example playbook to disable a user:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle users
@@ -278,12 +299,13 @@ Example playbook to disable a user:
       name: pinky
       state: disabled
 ```
+{% endraw %}
 
 This can also be done as an alternative with the `users` variable containing only names.
 
-
 Example playbook to enable users:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle users
@@ -297,12 +319,32 @@ Example playbook to enable users:
       name: pinky,brain
       state: enabled
 ```
+{% endraw %}
 
 This can also be done as an alternative with the `users` variable containing only names.
 
+Example playbook to rename users:
+
+{% raw %}
+```yaml
+---
+- name: Playbook to handle users
+  hosts: ipaserver
+  become: true
+
+  tasks:
+  # Rename user pinky to reddy
+  - ipauser:
+      ipaadmin_password: SomeADMINpassword
+      name: pinky
+      rename: reddy
+      state: enabled
+```
+{% endraw %}
 
 Example playbook to unlock users:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle users
@@ -316,10 +358,12 @@ Example playbook to unlock users:
       name: pinky,brain
       state: unlocked
 ```
+{% endraw %}
 
 
 Example playbook to ensure users are absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle users
@@ -333,12 +377,14 @@ Example playbook to ensure users are absent:
       name: pinky,brain
       state: absent
 ```
+{% endraw %}
 
 This can also be done as an alternative with the `users` variable containing only names.
 
 
 Example playbook to ensure users are absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle users
@@ -354,6 +400,7 @@ Example playbook to ensure users are absent:
       - name: brain
       state: absent
 ```
+{% endraw %}
 
 When using FreeIPA 4.8.0+, SMB logon script, profile, home directory and home drive can be set for users.
 
@@ -363,6 +410,7 @@ The YAML specification states that a colon (':') is a key separator and a dash (
 
 Example playbook to set SMB attributes:
 
+{% raw %}
 ```yaml
 ---
 - name: Plabook to handle users
@@ -381,6 +429,7 @@ Example playbook to set SMB attributes:
       smb_home_dir: \\users\home\smbuser
       smb_home_drive: "U:"
 ```
+{% endraw %}
 
 
 Variables
@@ -403,7 +452,7 @@ Variable | Description | Required
 `update_password` | Set password for a user in present state only on creation or always. It can be one of `always` or `on_create` and defaults to `always`. | no
 `preserve` | Delete a user, keeping the entry available for future use. (bool)  | no
 `action` | Work on user or member level. It can be on of `member` or `user` and defaults to `user`. | no
-`state` | The state to ensure. It can be one of `present`, `absent`, `enabled`, `disabled`, `unlocked` or `undeleted`, default: `present`. Only `names` or `users` with only `name` set are allowed if state is not `present`. | yes
+`state` | The state to ensure. It can be one of `present`, `absent`, `enabled`, `disabled`, `renamed`, `unlocked` or `undeleted`, default: `present`. Only `names` or `users` with only `name` set are allowed if state is not `present`. | yes
 
 
 
@@ -460,8 +509,8 @@ Variable | Description | Required
 `smb_profile_path:` \| `ipantprofilepath` | SMB profile path, in UNC format. Requires FreeIPA version 4.8.0+. | no 
 `smb_home_dir` \| `ipanthomedirectory` | SMB Home Directory, in UNC format. Requires FreeIPA version 4.8.0+.  | no 
 `smb_home_drive` \| `ipanthomedirectorydrive` | SMB Home Directory Drive, a single upercase letter (A-Z) followed by a colon (:), for example "U:". Requires FreeIPA version 4.8.0+. | no 
+`rename` \| `new_name` | Rename the user object to the new name string. Only usable with `state: renamed`. | no
 `nomembers` | Suppress processing of membership attributes. (bool) | no
-
 
 
 Return Values
@@ -479,5 +528,5 @@ Variable | Description | Returned When
 Authors
 =======
 
-Thomas Woerner
-Rafael Jeffman
+- Thomas Woerner
+- Rafael Jeffman

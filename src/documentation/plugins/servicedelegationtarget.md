@@ -37,14 +37,17 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 
 Example playbook to make sure servicedelegationtarget delegation-target is present:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA servicedelegationtarget
@@ -57,10 +60,12 @@ Example playbook to make sure servicedelegationtarget delegation-target is prese
       ipaadmin_password: SomeADMINpassword
       name: delegation-target
 ```
+{% endraw %}
 
 
 Example playbook to make sure servicedelegationtarget delegation-target member principal test/example.com is present:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA servicedelegationtarget
@@ -75,10 +80,12 @@ Example playbook to make sure servicedelegationtarget delegation-target member p
       principal: test/example.com
       action: member
 ```
+{% endraw %}
 
 
 Example playbook to make sure servicedelegationtarget delegation-target member principal test/example.com is absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA servicedelegationtarget
@@ -95,10 +102,12 @@ Example playbook to make sure servicedelegationtarget delegation-target member p
       state: absent
     state: absent
 ```
+{% endraw %}
 
 
 Example playbook to make sure servicedelegationtarget delegation-target is absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA servicedelegationtarget
@@ -112,6 +121,7 @@ Example playbook to make sure servicedelegationtarget delegation-target is absen
       name: delegation-target
       state: absent
 ```
+{% endraw %}
 
 
 Variables

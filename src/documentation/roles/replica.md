@@ -50,6 +50,7 @@ Usage
 
 Example inventory file with fixed principal using auto-discovery with DNS records:
 
+{% raw %}
 ```ini
 [ipareplicas]
 ipareplica1.example.com
@@ -58,9 +59,11 @@ ipareplica2.example.com
 [ipareplicas:vars]
 ipaadmin_principal=admin
 ```
+{% endraw %}
 
 Example playbook to setup the IPA client(s) using principal from inventory file and password from an [Ansible Vault](http://docs.ansible.com/ansible/latest/playbooks_vault.html) file:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to configure IPA replicas
@@ -73,9 +76,11 @@ Example playbook to setup the IPA client(s) using principal from inventory file 
   - role: ipareplica
     state: present
 ```
+{% endraw %}
 
 Example playbook to unconfigure the IPA client(s) using principal and password from inventory file:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to unconfigure IPA replicas
@@ -86,9 +91,11 @@ Example playbook to unconfigure the IPA client(s) using principal and password f
   - role: ipareplica
     state: absent
 ```
+{% endraw %}
 
 Example inventory file with fixed server, principal, password and domain:
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.example.com
@@ -103,9 +110,11 @@ ipaadmin_principal=admin
 ipaadmin_password=MySecretPassword123
 ipadm_password=MySecretPassword456
 ```
+{% endraw %}
 
 Example playbook to setup the IPA client(s) using principal and password from inventory file:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to configure IPA replicas with username/password
@@ -116,9 +125,11 @@ Example playbook to setup the IPA client(s) using principal and password from in
   - role: ipareplica
     state: present
 ```
+{% endraw %}
 
 Example inventory file to remove a replica from the domain:
 
+{% raw %}
 ```ini
 [ipareplicas]
 ipareplica1.example.com
@@ -127,9 +138,11 @@ ipareplica1.example.com
 ipaadmin_password=MySecretPassword123
 ipareplica_remove_from_domain=true
 ```
+{% endraw %}
 
 Example playbook to remove an IPA replica using admin passwords from the domain:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to remove IPA replica
@@ -140,21 +153,26 @@ Example playbook to remove an IPA replica using admin passwords from the domain:
   - role: ipareplica
     state: absent
 ```
+{% endraw %}
 
 The inventory will enable the removal of the replica (also a replica) from the domain. Additional options are needed if the removal of the replica is resulting in a topology disconnect or if the replica is the last that has a role.
 
 To continue with the removal with a topology disconnect it is needed to set these parameters:
 
+{% raw %}
 ```ini
 ipareplica_ignore_topology_disconnect=true
 ipareplica_remove_on_server=ipareplica2.example.com
 ```
+{% endraw %}
 
 To continue with the removal for a replica that is the last that has a role:
 
+{% raw %}
 ```ini
 ipareplica_ignore_last_of_role=true
 ```
+{% endraw %}
 
 Be careful with enabling the `ipareplica_ignore_topology_disconnect` and especially `ipareplica_ignore_last_of_role`, the change can not be reverted easily.
 
@@ -165,19 +183,23 @@ Playbooks
 =========
 
 The playbooks needed to deploy or undeploy a replica are part of the repository in the playbooks folder. There are also playbooks to deploy and undeploy clusters.
+{% raw %}
 ```
 install-replica.yml
 uninstall-replica.yml
 ```
+{% endraw %}
 Please remember to link or copy the playbooks to the base directory of ansible-freeipa if you want to use the roles within the source archive.
 
 
 How to setup replicas
 ---------------------
 
+{% raw %}
 ```bash
 ansible-playbook -v -i inventory/hosts install-replica.yml
 ```
+{% endraw %}
 This will deploy the replicas defined in the inventory file.
 
 

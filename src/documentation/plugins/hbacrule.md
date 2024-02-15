@@ -35,14 +35,17 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 
 Example playbook to make sure HBAC Rule login exists:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle hbacrules
@@ -55,10 +58,12 @@ Example playbook to make sure HBAC Rule login exists:
       ipaadmin_password: SomeADMINpassword
       name: login
 ```
+{% endraw %}
 
 
 Example playbook to make sure HBAC Rule login exists with the only HBAC Service sshd:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle hbacrules
@@ -73,9 +78,11 @@ Example playbook to make sure HBAC Rule login exists with the only HBAC Service 
       hbacsvc:
       - sshd
 ```
+{% endraw %}
 
 Example playbook to make sure HBAC Service sshd is present in HBAC Rule login:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle hbacrules
@@ -91,9 +98,11 @@ Example playbook to make sure HBAC Service sshd is present in HBAC Rule login:
       - sshd
       action: member
 ```
+{% endraw %}
 
 Example playbook to make sure HBAC Service sshd is absent in HBAC Rule login:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle hbacrules
@@ -110,9 +119,11 @@ Example playbook to make sure HBAC Service sshd is absent in HBAC Rule login:
       action: member
       state: absent
 ```
+{% endraw %}
 
 Example playbook to make sure HBAC Rule login is absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle hbacrules
@@ -126,6 +137,7 @@ Example playbook to make sure HBAC Rule login is absent:
       name: login
       state: absent
 ```
+{% endraw %}
 
 
 Variables

@@ -35,13 +35,16 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.example.com
 ```
+{% endraw %}
 
 Example playbook to ensure an AAAA record is present:
 
+{% raw %}
 ```yaml
 ---
 - ipadnsrecord:
@@ -51,9 +54,11 @@ Example playbook to ensure an AAAA record is present:
     record_type: 'AAAA'
     record_value: '::1'
 ```
+{% endraw %}
 
 Example playbook to ensure an AAAA record is present, with a TTL of 300:
 
+{% raw %}
 ```yaml
 ---
 - ipadnsrecord:
@@ -64,8 +69,10 @@ Example playbook to ensure an AAAA record is present, with a TTL of 300:
     record_value: '::1'
     record_ttl: 300
 ```
+{% endraw %}
 
 Example playbook to ensure an AAAA record is present, with a reverse PTR record:
+{% raw %}
 ```yaml
 ---
 - ipadnsrecord:
@@ -76,8 +83,10 @@ Example playbook to ensure an AAAA record is present, with a reverse PTR record:
     record_value: 'fd00::0002'
     create_reverse: yes
 ```
+{% endraw %}
 
 Example playbook to ensure a LOC record is present, given its individual attributes:
+{% raw %}
 ```yaml
 ---
 - ipadnsrecord:
@@ -97,9 +106,11 @@ Example playbook to ensure a LOC record is present, given its individual attribu
     loc_h_precision: 10000
     loc_v_precision: 10
 ```
+{% endraw %}
 
 Example playbook to ensure multiple DNS records are present:
 
+{% raw %}
 ```yaml
 ---
 ipadnsrecord:
@@ -116,9 +127,11 @@ ipadnsrecord:
       record_type: AAAA
       record_value: ::1
 ```
+{% endraw %}
 
 Example playbook to ensure multiple CNAME records are present:
 
+{% raw %}
 ```yaml
 ---
 - name: Ensure that 'host03' and 'host04' have CNAME records.
@@ -131,9 +144,11 @@ Example playbook to ensure multiple CNAME records are present:
     - name: host04
       cname_hostname: host04.example.com
 ```
+{% endraw %}
 
 Example playbook to ensure NS record is absent:
 
+{% raw %}
 ```yaml
 ---
 - ipadnsrecord:
@@ -143,9 +158,11 @@ Example playbook to ensure NS record is absent:
     ns_hostname: host04
     state: absent
 ```
+{% endraw %}
 
 Example playbook to ensure LOC record is present, with fields:
 
+{% raw %}
 ```yaml
 ---
 - ipadnsrecord:
@@ -165,9 +182,11 @@ Example playbook to ensure LOC record is present, with fields:
     loc_h_precision: 10000
     loc_v_precision: 10
 ```
+{% endraw %}
 
 Change value of an existing LOC record:
 
+{% raw %}
 ```yaml
 ---
 - ipadnsrecord:
@@ -177,9 +196,11 @@ Change value of an existing LOC record:
   loc_size: 1.00
   loc_rec: 52 22 23 N 4 53 32 E -2 0 10000 10
 ```
+{% endraw %}
 
 Example playbook to ensure multiple A records are present:
 
+{% raw %}
 ```yaml
 - ipadnsrecord:
     ipaadmin_password: SomeADMINpassword
@@ -191,8 +212,10 @@ Example playbook to ensure multiple A records are present:
       - 192.168.122.223
       - 192.168.122.224
 ```
+{% endraw %}
 
 Example playbook to ensure A and AAAA records are present, with reverse records (PTR):
+{% raw %}
 ```yaml
 - ipadnsrecord:
     ipaadmin_password: SomeADMINpassword
@@ -206,8 +229,10 @@ Example playbook to ensure A and AAAA records are present, with reverse records 
       - fd00::0002
     create_reverse: yes
 ```
+{% endraw %}
 
 Example playbook to ensure multiple A and AAAA records are present, but only A records have reverse records:
+{% raw %}
 ```yaml
 - ipadnsrecord:
     ipaadmin_password: SomeADMINpassword
@@ -217,9 +242,11 @@ Example playbook to ensure multiple A and AAAA records are present, but only A r
     aaaa_ip_address: fd00::0001
     a_create_reverse: yes
 ```
+{% endraw %}
 
 Example playbook to ensure multiple DNS records are absent:
 
+{% raw %}
 ```yaml
 ---
 - ipadnsrecord:
@@ -240,6 +267,7 @@ Example playbook to ensure multiple DNS records are absent:
       del_all: yes
     state: absent
 ```
+{% endraw %}
 
 Variables
 =========

@@ -35,14 +35,17 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 
 Example playbook to make sure location "my_location1" is present:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA location.
@@ -55,10 +58,12 @@ Example playbook to make sure location "my_location1" is present:
       name: my_location1
       description: My Location 1
 ```
+{% endraw %}
 
 
 Example playbook to make sure location "my_location1" is absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA location.
@@ -71,6 +76,7 @@ Example playbook to make sure location "my_location1" is absent:
       name: my_location1
       state: absent
 ```
+{% endraw %}
 
 
 Variables

@@ -56,6 +56,7 @@ Usage
 
 Example inventory file with fixed domain and realm, setting up of the DNS server and using forwarders from /etc/resolv.conf:
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver2.example.com
@@ -66,9 +67,11 @@ ipaserver_realm=EXAMPLE.COM
 ipaserver_setup_dns=yes
 ipaserver_auto_forwarders=yes
 ```
+{% endraw %}
 
 Example playbook to setup the IPA server using admin and dirman passwords from an [Ansible Vault](http://docs.ansible.com/ansible/latest/playbooks_vault.html) file:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to configure IPA server
@@ -81,9 +84,11 @@ Example playbook to setup the IPA server using admin and dirman passwords from a
   - role: ipaserver
     state: present
 ```
+{% endraw %}
 
 Example playbook to unconfigure the IPA server using principal and password from inventory file:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to unconfigure IPA server
@@ -94,9 +99,11 @@ Example playbook to unconfigure the IPA server using principal and password from
   - role: ipaserver
     state: absent
 ```
+{% endraw %}
 
 Example inventory file with fixed domain, realm, admin and dirman passwords:
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.example.com
@@ -107,9 +114,11 @@ ipaserver_realm=EXAMPLE.COM
 ipaadmin_password=MySecretPassword123
 ipadm_password=MySecretPassword234
 ```
+{% endraw %}
 
 Example playbook to setup the IPA server using admin and dirman passwords from inventory file:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to configure IPA server
@@ -120,11 +129,13 @@ Example playbook to setup the IPA server using admin and dirman passwords from i
   - role: ipaserver
     state: present
 ```
+{% endraw %}
 
 Example playbook to setup the IPA primary with external signed CA using the previous inventory file:
 
 Server installation step 1: Generate CSR, copy to controller as `<ipaserver hostname>-ipa.csr`
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to configure IPA server step1
@@ -144,11 +155,13 @@ Server installation step 1: Generate CSR, copy to controller as `<ipaserver host
       dest: "{{ groups.ipaserver[0] + '-ipa.csr' }}"
       flat: yes
 ```
+{% endraw %}
 
 Sign with CA: This is up to you
 
 Server installation step 2: Copy `<ipaserver hostname>-chain.crt` to the IPA server and continue with installation of the primary.
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to configure IPA server step3
@@ -168,11 +181,13 @@ Server installation step 2: Copy `<ipaserver hostname>-chain.crt` to the IPA ser
   - role: ipaserver
     state: present
 ```
+{% endraw %}
 
 The files can also be copied automatically: Set `ipaserver_copy_csr_to_controller` to true in the server installation step 1 and set `ipaserver_external_cert_files_from_controller` to point to the `chain.crt` file in the server installation step 2.
 
 Since version 4.10, FreeIPA supports creating certificates using random serial numbers. Random serial numbers is a global and permanent setting, that can only be activated while deploying the first server of the domain. Replicas will inherit this setting automatically. An example of an inventory file to deploy a server with random serial numbers enabled is:
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.example.com
@@ -184,12 +199,14 @@ ipaadmin_password=MySecretPassword123
 ipadm_password=MySecretPassword234
 ipaserver_random_serial_numbers=true
 ```
+{% endraw %}
 
 By setting the variable in the inventory file, the same ipaserver deployment playbook, shown before, can be used.
 
 
 Example inventory file to remove a server from the domain:
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.example.com
@@ -198,9 +215,11 @@ ipaserver.example.com
 ipaadmin_password=MySecretPassword123
 ipaserver_remove_from_domain=true
 ```
+{% endraw %}
 
 Example playbook to remove an IPA server using admin passwords from the domain:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to remove IPA server
@@ -211,21 +230,26 @@ Example playbook to remove an IPA server using admin passwords from the domain:
   - role: ipaserver
     state: absent
 ```
+{% endraw %}
 
 The inventory will enable the removal of the server (also a replica) from the domain. Additional options are needed if the removal of the server/replica is resulting in a topology disconnect or if the server/replica is the last that has a role.
 
 To continue with the removal with a topology disconnect it is needed to set these parameters:
 
+{% raw %}
 ```ini
 ipaserver_ignore_topology_disconnect=true
 ipaserver_remove_on_server=ipaserver2.example.com
 ```
+{% endraw %}
 
 To continue with the removal for a server that is the last that has a role:
 
+{% raw %}
 ```ini
 ipaserver_ignore_last_of_role=true
 ```
+{% endraw %}
 
 Be careful with enabling the `ipaserver_ignore_topology_disconnect` and especially `ipaserver_ignore_last_of_role`, the change can not be reverted easily.
 
@@ -234,19 +258,23 @@ Playbooks
 =========
 
 The playbooks needed to deploy or undeploy a server are part of the repository in the playbooks folder. There are also playbooks to deploy and undeploy clusters.
+{% raw %}
 ```
 install-server.yml
 uninstall-server.yml
 ```
+{% endraw %}
 Please remember to link or copy the playbooks to the base directory of ansible-freeipa if you want to use the roles within the source archive.
 
 
 How to setup a server
 ---------------------
 
+{% raw %}
 ```bash
 ansible-playbook -v -i inventory/hosts install-server.yml
 ```
+{% endraw %}
 This will deploy the server defined in the inventory file.
 
 

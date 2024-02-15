@@ -34,14 +34,17 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 
 Example playbook to ensure presence of an automount key:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage automount key
@@ -57,9 +60,11 @@ Example playbook to ensure presence of an automount key:
       info: 192.168.122.1:/exports
       state: present
 ```
+{% endraw %}
 
 Example playbook to rename an automount map:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to add an automount map
@@ -75,9 +80,11 @@ Example playbook to rename an automount map:
       newname: NewKeyName
       state: renamed
 ```
+{% endraw %}
 
 Example playbook to ensure an automount key is absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage an automount key
@@ -92,6 +99,7 @@ Example playbook to ensure an automount key is absent:
       key: TestKey
       state: absent
 ```
+{% endraw %}
 
 
 Variables

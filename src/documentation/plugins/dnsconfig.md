@@ -35,13 +35,16 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 Example playbook to set global DNS configuration:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle global DNS configuration
@@ -58,9 +61,11 @@ Example playbook to set global DNS configuration:
       forward_policy: only
       allow_sync_ptr: yes
 ```
+{% endraw %}
 
 Example playbook to ensure a global forwarder, with a custom port, is absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle global DNS configuration
@@ -76,9 +81,11 @@ Example playbook to ensure a global forwarder, with a custom port, is absent:
       action: member
       state: absent
 ```
+{% endraw %}
 
 Example playbook to disable global forwarders:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to disable global DNS forwarders
@@ -90,9 +97,11 @@ Example playbook to disable global forwarders:
   - ipadnsconfig:
       forward_policy: none
 ```
+{% endraw %}
 
 Example playbook to change global forward policy:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to change global forward policy
@@ -104,9 +113,11 @@ Example playbook to change global forward policy:
   - ipadnsconfig:
       forward_policy: first
 ```
+{% endraw %}
 
 Example playbook to disallow synchronization of forward (A, AAAA) and reverse (PTR) records:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to disallow reverse synchronization.
@@ -118,6 +129,7 @@ Example playbook to disallow synchronization of forward (A, AAAA) and reverse (P
   - ipadnsconfig:
       allow_sync_ptr: no
 ```
+{% endraw %}
 
 Variables
 =========

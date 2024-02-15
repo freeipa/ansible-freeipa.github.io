@@ -35,14 +35,17 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 
 Example playbook to make sure server "server.example.com" is already present in the topology:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA server.
@@ -54,12 +57,14 @@ Example playbook to make sure server "server.example.com" is already present in 
       ipaadmin_password: SomeADMINpassword
       name: server.example.com
 ```
+{% endraw %}
 
 This task is not deploying a new server, it is only checking if the server eists. It will therefore fail if the server does not exist.
 
 
 Example playbook to make sure server "server.example.com" has location mylocation:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA server.
@@ -72,10 +77,12 @@ Example playbook to make sure server "server.example.com" has location mylocatio
       name: server.example.com
       location: mylocation
 ```
+{% endraw %}
 
 
 Example playbook to make sure server "server.example.com" does not have a location:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA server.
@@ -88,10 +95,12 @@ Example playbook to make sure server "server.example.com" does not have a locati
       name: server.example.com
       location: ""
 ```
+{% endraw %}
 
 
 Example playbook to make sure server "server.example.com" has service weight 1:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA server.
@@ -104,10 +113,12 @@ Example playbook to make sure server "server.example.com" has service weight 1:
       name: server.example.com
       service_weight: 1
 ```
+{% endraw %}
 
 
 Example playbook to make sure server "server.example.com" does not have a service weight:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA server.
@@ -120,10 +131,12 @@ Example playbook to make sure server "server.example.com" does not have a servic
       name: server.example.com
       service_weight: -1
 ```
+{% endraw %}
 
 
 Example playbook to make sure server "server.example.com" is hidden:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA server.
@@ -136,10 +149,12 @@ Example playbook to make sure server "server.example.com" is hidden:
       name: server.example.com
       hidden: yes
 ```
+{% endraw %}
 
 
 Example playbook to make sure server "server.example.com" is not hidden:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA server.
@@ -152,10 +167,12 @@ Example playbook to make sure server "server.example.com" is not hidden:
       name: server.example.com
       hidden: no
 ```
+{% endraw %}
 
 
 Example playbook to make sure server "server.example.com" is absent from the topology:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA server.
@@ -168,10 +185,12 @@ Example playbook to make sure server "server.example.com" is absent from the top
       name: server.example.com
       state: absent
 ```
+{% endraw %}
 
 
 Example playbook to make sure server "server.example.com" is absent from the topology in continuous mode to ignore errors:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA server.
@@ -185,10 +204,12 @@ Example playbook to make sure server "server.example.com" is absent from the top
       continue: yes
       state: absent
 ```
+{% endraw %}
 
 
 Example playbook to make sure server "server.example.com" is absent from the topology with skipping the last of role check:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA server.
@@ -202,10 +223,12 @@ Example playbook to make sure server "server.example.com" is absent from the top
       ignore_last_of_role: yes
       state: absent
 ```
+{% endraw %}
 
 
 Example playbook to make sure server "server.example.com" is absent from the topology with skipping the topology disconnect check:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA server.
@@ -219,10 +242,12 @@ Example playbook to make sure server "server.example.com" is absent from the top
       ignore_topology_disconnect: yes
       state: absent
 ```
+{% endraw %}
 
 
 Example playbook to make sure server "server.example.com" is absent from the domain in force mode even if it does not exist:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to manage IPA server.
@@ -236,6 +261,7 @@ Example playbook to make sure server "server.example.com" is absent from the dom
       force: yes
       state: absent
 ```
+{% endraw %}
 
 This task will always report a change.
 

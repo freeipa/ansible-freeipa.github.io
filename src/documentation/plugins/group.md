@@ -42,14 +42,17 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 
 Example playbook to add groups:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle groups
@@ -75,9 +78,11 @@ Example playbook to add groups:
       ipaadmin_password: SomeADMINpassword
       name: appops
 ```
+{% endraw %}
 
 These three `ipagroup` module calls can be combined into one with the `groups` variable:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle groups
@@ -95,9 +100,11 @@ These three `ipagroup` module calls can be combined into one with the `groups` v
         - pinky
       - name: appops
 ```
+{% endraw %}
 
 You can also alternatively use a json file containing the groups, here `groups_present.json`:
 
+{% raw %}
 ```json
 {
   "groups": [
@@ -112,9 +119,11 @@ You can also alternatively use a json file containing the groups, here `groups_p
   ]
 }
 ```
+{% endraw %}
 
 And ensure the presence of the groups with this example playbook:
 
+{% raw %}
 ```yaml
 ---
 - name: Tests
@@ -131,9 +140,54 @@ And ensure the presence of the groups with this example playbook:
       ipaadmin_password: SomeADMINpassword
       groups: "{{ groups }}"
 ```
+{% endraw %}
+
+Example playbook to rename a group:
+
+{% raw %}
+```yaml
+---
+- name: Playbook to rename a single group
+  hosts: ipaserver
+  become: false
+  gather_facts: false
+
+  tasks:
+  - name: Rename group appops to webops
+    ipagroup:
+      ipaadmin_password: SomeADMINpassword
+      name: appops
+      rename: webops
+      state: renamed
+```
+{% endraw %}
+
+Several groups can also be renamed with a single task, as in the example playbook:
+
+{% raw %}
+```yaml
+---
+- name: Playbook to rename multiple groups
+  hosts: ipaserver
+  become: false
+  gather_facts: false
+
+  tasks:
+  - name Rename group1 to newgroup1 and group2 to newgroup2
+    ipagroup:
+      ipaadmin_password: SomeADMINpassword
+      groups:
+      - name: group1
+        rename: newgroup1
+      - name: group2
+        rename: newgroup2
+      state: renamed
+```
+{% endraw %}
 
 Example playbook to add users to a group:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle groups
@@ -149,11 +203,13 @@ Example playbook to add users to a group:
       user:
       - brain
 ```
+{% endraw %}
 `action` controls if a the group or member will be handled. To add or remove members, set `action` to `member`.
 
 
 Example playbook to add group members to a group:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle groups
@@ -169,9 +225,11 @@ Example playbook to add group members to a group:
       - sysops
       - appops
 ```
+{% endraw %}
 
 Example playbook to add members from a trusted realm to an external group:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle groups.
@@ -187,9 +245,11 @@ Example playbook to add members from a trusted realm to an external group:
       - WINIPA\\Web Users
       - WINIPA\\Developers
 ```
+{% endraw %}
 
 Example playbook to add nonposix and external groups:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to add nonposix and external groups
@@ -205,9 +265,11 @@ Example playbook to add nonposix and external groups:
       - name: appops
         external: true
 ```
+{% endraw %}
 
 Example playbook to remove groups:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle groups
@@ -221,9 +283,11 @@ Example playbook to remove groups:
       name: sysops,appops,ops
       state: absent
 ```
+{% endraw %}
 
 Example playbook to ensure groups are absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle groups
@@ -238,6 +302,7 @@ Example playbook to ensure groups are absent:
       - name: sysops
       state: absent
 ```
+{% endraw %}
 
 Variables
 =========
@@ -264,11 +329,13 @@ Variable | Description | Required
 `membermanager_group` | List of member manager groups assigned to this group. Only usable with IPA versions 4.8.4 and up. | no
 `externalmember` \| `ipaexternalmember`  \| `external_member`| List of members of a trusted domain in DOM\\name or name@domain form. | no
 `idoverrideuser` | List of user ID overrides to manage. Only usable with IPA versions 4.8.7 and up.| no
+`rename` \| `new_name` | Rename the user object to the new name string. Only usable with `state: renamed`. | no
 `action` | Work on group or member level. It can be on of `member` or `group` and defaults to `group`. | no
-`state` | The state to ensure. It can be one of `present` or `absent`, default: `present`. | yes
+`state` | The state to ensure. It can be one of `present`, `absent` or `renamed`, default: `present`. | yes
 
 
 Authors
 =======
 
-Thomas Woerner
+- Thomas Woerner
+- Rafael Jeffman

@@ -35,14 +35,17 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 
 Example playbook to ensure presence of pwpolicies for exisiting group ops:
 
+{% raw %}
 ```yaml
   tasks:
   - name: Ensure presence of pwpolicies for group ops
@@ -57,9 +60,11 @@ Example playbook to ensure presence of pwpolicies for exisiting group ops:
       minlength: 8
       maxfail: 3
 ```
+{% endraw %}
 
 Example playbook to ensure absence of pwpolicies for group ops:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle pwpolicies
@@ -73,9 +78,11 @@ Example playbook to ensure absence of pwpolicies for group ops:
       name: ops
       state: absent
 ```
+{% endraw %}
 
 Example playbook to ensure maxlife is set to 49 in global policy:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle pwpolicies
@@ -88,9 +95,11 @@ Example playbook to ensure maxlife is set to 49 in global policy:
       ipaadmin_password: SomeADMINpassword
       maxlife: 49
 ```
+{% endraw %}
 
 Example playbook to ensure password grace period is set to 3 in global policy:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle pwpolicies
@@ -103,9 +112,11 @@ Example playbook to ensure password grace period is set to 3 in global policy:
       ipaadmin_password: SomeADMINpassword
       gracelimit: 3
 ```
+{% endraw %}
 
 Example playbook to ensure password grace period is set to unlimited in global policy:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle pwpolicies
@@ -118,6 +129,7 @@ Example playbook to ensure password grace period is set to unlimited in global p
       ipaadmin_password: SomeADMINpassword
       gracelimit: -1
 ```
+{% endraw %}
 
 
 Variables

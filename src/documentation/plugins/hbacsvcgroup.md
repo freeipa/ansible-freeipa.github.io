@@ -35,14 +35,17 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 
 Example playbook to make sure HBAC Service Group login exists:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle hbacsvcgroups
@@ -55,10 +58,12 @@ Example playbook to make sure HBAC Service Group login exists:
       ipaadmin_password: SomeADMINpassword
       name: login
 ```
+{% endraw %}
 
 
 Example playbook to make sure HBAC Service Group login exists with the only HBAC Service sshd:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle hbacsvcgroups
@@ -73,9 +78,11 @@ Example playbook to make sure HBAC Service Group login exists with the only HBAC
       hbacsvc:
       - sshd
 ```
+{% endraw %}
 
 Example playbook to make sure HBAC Service sshd is present in HBAC Service Group login:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle hbacsvcgroups
@@ -91,9 +98,11 @@ Example playbook to make sure HBAC Service sshd is present in HBAC Service Group
       - sshd
       action: member
 ```
+{% endraw %}
 
 Example playbook to make sure HBAC Service sshd is absent in HBAC Service Group login:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle hbacsvcgroups
@@ -110,9 +119,11 @@ Example playbook to make sure HBAC Service sshd is absent in HBAC Service Group 
       action: member
       state: absent
 ```
+{% endraw %}
 
 Example playbook to make sure HBAC Service Group login is absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle hbacsvcgroups
@@ -126,6 +137,7 @@ Example playbook to make sure HBAC Service Group login is absent:
       name: login
       state: absent
 ```
+{% endraw %}
 
 
 Variables

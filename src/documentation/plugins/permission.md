@@ -35,14 +35,17 @@ Usage
 
 Example inventory file
 
+{% raw %}
 ```ini
 [ipaserver]
 ipaserver.test.local
 ```
+{% endraw %}
 
 
 Example playbook to make sure permission "MyPermission" is present:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle IPA permissions
@@ -57,10 +60,12 @@ Example playbook to make sure permission "MyPermission" is present:
       object_type: host
       right: all
 ```
+{% endraw %}
 
 
 Example playbook to ensure permission "MyPermission" is present with attr carlicense:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle IPA permissions
@@ -77,10 +82,12 @@ Example playbook to ensure permission "MyPermission" is present with attr carlic
       attrs:
       - carlicense
 ```
+{% endraw %}
 
 
 Example playbook to ensure attr gecos is present in permission "MyPermission":
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle IPA permissions
@@ -96,10 +103,12 @@ Example playbook to ensure attr gecos is present in permission "MyPermission":
       - gecos
       action: member
 ```
+{% endraw %}
 
 
 Example playbook to ensure attr gecos is absent in permission "MyPermission":
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle IPA permissions
@@ -116,10 +125,12 @@ Example playbook to ensure attr gecos is absent in permission "MyPermission":
       action: member
       state: absent
 ```
+{% endraw %}
 
 
 Example playbook to make sure permission "MyPermission" is absent:
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle IPA permissions
@@ -133,10 +144,12 @@ Example playbook to make sure permission "MyPermission" is absent:
       name: MyPermission
       state: absent
 ```
+{% endraw %}
 
 
 Example playbook to make sure permission "MyPermission" is renamed to "MyNewPermission":
 
+{% raw %}
 ```yaml
 ---
 - name: Playbook to handle IPA permissions
@@ -151,6 +164,7 @@ Example playbook to make sure permission "MyPermission" is renamed to "MyNewPerm
       rename: MyNewPermission
       state: renamed
 ```
+{% endraw %}
 
 
 Variables
